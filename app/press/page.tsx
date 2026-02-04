@@ -14,7 +14,7 @@ const pressItems = [
     title: "Electronic Press Kit",
     description: "Complete material for media professionals, including biography, high-resolution photos, and technical information.",
     action: "Download EPK",
-    href: "/documentos/leusio-electronic-press.pdf", 
+    href: "/documentos/leusio-electronic press.pdf", 
     isDownload: true,
   },
   {
