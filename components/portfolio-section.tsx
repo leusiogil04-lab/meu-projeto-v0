@@ -33,7 +33,7 @@ const portfolioItems = [
     id: 5,
     title: "MOVE Concert",
     category: "Performance",
-    image: "/imagens/nopiano.jpg",
+    image: "/imagens/nopianoleusio.jpg",
   },
   {
     id: 6,
