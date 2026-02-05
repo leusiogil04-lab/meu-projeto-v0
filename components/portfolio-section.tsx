@@ -9,7 +9,7 @@ const portfolioItems = [
     id: 1,
     title: "EP Clamor",
     category: "Performance",
-    image: "/imagens/performancect.jpg",
+    image: "/imagens/performance.jpg",
   },
   {
     id: 2,
