@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Leusio Gil | mozambican Artist",
-  description: "Leusio's Website",
+  title: "Leusio Gil | Mozambican Artist", // Título que aparece na aba e no Google
+  description: "Official website of Leusio Gil: music, culture, and intercultural learning.", // Descrição que o Google exibe
 };
 
 export default function RootLayout({
