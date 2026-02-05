@@ -1,9 +1,7 @@
 "use client"
 
-import React from "react"
-
-import { useEffect, useRef, useState } from "react"
-import { Instagram, Youtube, Mail, Linkedin } from "lucide-react"
+import React, { useEffect, useRef, useState } from "react"
+import { Instagram, Youtube, Mail, Linkedin, Loader2 } from "lucide-react" // Adicionei Loader2
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -11,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea"
 
 export function ContactSection() {
   const [isVisible, setIsVisible] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false) // Estado essencial
   const sectionRef = useRef<HTMLElement>(null)
   const [formData, setFormData] = useState({
     name: "",
@@ -35,10 +34,29 @@ export function ContactSection() {
     return () => observer.disconnect()
   }, [])
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // PARTE ESSENCIAL: Lógica do Resend
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission
-    console.log("Form submitted:", formData)
+    setIsSubmitting(true)
+
+    try {
+      const response = await fetch("/api/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+
+      if (response.ok) {
+        alert("Mensagem enviada!")
+        setFormData({ name: "", email: "", message: "" })
+      } else {
+        alert("Erro ao enviar.")
+      }
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -123,7 +141,16 @@ export function ContactSection() {
               required
             />
           </div>
-      
+          <div className="text-center">
+            {/* BOTÃO COM LOADING */}
+            <Button
+              type="submit"
+              disabled={isSubmitting}
+              className="px-8 py-6 h-auto bg-primary text-primary-foreground text-sm font-medium tracking-widest uppercase rounded-sm hover:bg-primary/90 transition-colors duration-200"
+            >
+              {isSubmitting ? <Loader2 className="animate-spin h-4 w-4" /> : "Send Message"}
+            </Button>
+          </div>
         </form>
 
         {/* Social Links */}
