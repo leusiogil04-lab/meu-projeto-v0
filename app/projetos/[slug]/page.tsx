@@ -38,7 +38,7 @@ export default async function ProjetoPage({
             </h1>
             {isDocumentary && (
               <p className="mt-6 text-zinc-600 max-w-2xl mx-auto italic text-lg">
-                "Uma jornada através da interculturalidade de Moçambique e seu poder de transformação social."
+                "A project that educates, welcomes and cooperates for  social sustainability."
               </p>
             )}
           </header>
@@ -76,17 +76,16 @@ export default async function ProjetoPage({
                 {isDocumentary ? (
                   <>
                     <p>
-                      O documentário <strong>Raízes e Ritmos</strong> explora a interculturalidade de Moçambique 
-                      como uma ferramenta de acolhimento para pessoas em situação de vulnerabilidade social [00:00:28].
+                      This documentary records the journey of the project Raízes e Ritmos – Interculturalidade de Moçambique, developed over four months at CAPS II and CAPS AD in Tatuí, São Paulo, Brazil.
+                      The project used music, storytelling, rhythms and cultural traditions as tools for welcoming, listening and building meaningful connections with people facing psychosocial challenges.
                     </p>
                     <p>
-                      Ao longo de quatro meses de trabalho na cidade de Tatuí, o projeto utilizou música, 
-                      histórias e brincadeiras tradicionais moçambicanas para conectar pacientes do CAPS 
-                      e estudantes com a diversidade cultural [00:01:13].
+                      The film presents the goals of the project, its working methods, and the experiences created with different groups inside the CAPS centres.
+                      Throughout the process, art proved to be a powerful way to care, express feelings and connect people, encouraging exchange, shared learning and moments shaped by empathy and respect.
                     </p>
                     <p>
-                      O filme captura momentos emocionantes de superação, onde a arte rompe barreiras linguísticas 
-                      e sociais, provando ser uma ferramenta poderosa de cuidado e humanização [00:05:21].
+                      The documentary also highlights the partnership with CAPS II and CAPS AD in Tatuí — including coordinators, teams and participants — whose openness and trust made the project possible.
+                      It stands as a record of encounters, emotions and transformation through culture, showing how art, music can promote belonging, understanding and human connection.
                     </p>
                   </>
                 ) : (
