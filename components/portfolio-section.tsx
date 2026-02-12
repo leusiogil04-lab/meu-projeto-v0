@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
+import Link from "next/link" // Importado para permitir a navegação
 import { cn } from "@/lib/utils"
 
 const portfolioItems = [
@@ -14,7 +15,7 @@ const portfolioItems = [
   {
     id: 2,
     title: "Kuwala Band",
-    category: "Social Projetcs",
+    category: "Social Projects",
     image: "/imagens/kuwala.jpg",
   },
   {
@@ -26,7 +27,7 @@ const portfolioItems = [
   {
     id: 4,
     title: "Documentary",
-    category: "Projetc",
+    category: "Project",
     image: "/imagens/horizontal02leusiogil.jpg",
   },
   {
@@ -91,8 +92,10 @@ export function PortfolioSection() {
 
         <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {portfolioItems.map((item, index) => (
-            <div
-              key={item.id}
+            <Link 
+              key={item.id} 
+              // Cria um link dinâmico baseado no título: "EP Clamor" vira "/projetos/ep-clamor"
+              href={`/projetos/${item.title.toLowerCase().replace(/ /g, "-")}`}
               className={cn(
                 "group relative aspect-[4/3] overflow-hidden cursor-pointer transition-all duration-1000 ease-out",
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12",
@@ -106,18 +109,22 @@ export function PortfolioSection() {
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/70 transition-colors duration-300 flex items-center justify-center">
+              
+              {/* Overlay que aparece no Hover */}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/70 transition-colors duration-300 flex items-center justify-center">
                 <div className="text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-4">
-                  <span className="text-primary-foreground/80 text-xs font-medium tracking-widest uppercase">
+                  <span className="text-primary text-xs font-medium tracking-widest uppercase">
                     {item.category}
                   </span>
-                  <h3 className="mt-2 text-primary-foreground font-serif text-lg md:text-xl font-medium">
+                  <h3 className="mt-2 text-white font-serif text-lg md:text-xl font-medium">
                     {item.title}
                   </h3>
+                  <div className="mt-4 inline-block px-4 py-2 border border-white/20 text-white text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-colors">
+                    View Project
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
