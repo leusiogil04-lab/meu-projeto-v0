@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Leusio Gil | Mozambican Artist",
   description: "Official website of Leusio Gil: music, culture, and intercultural learning.",
+  alternates: {
+    canonical: "https://www.leusiogil.com",
+  },
   verification: {
     google: "xv2a_rw9Jt4tLG4kfvGhZZYvCddKCzIbZnagUc71Be8",
   },
