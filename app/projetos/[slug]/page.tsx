@@ -38,8 +38,10 @@ export default async function ProjetoPage({
             </h1>
             {isDocumentary && (
               <p className="mt-6 text-zinc-600 max-w-2xl mx-auto italic text-lg">
+
                 "A project that educates, welcomes and cooperates for  social sustainability."
               </p>
+              
             )}
           </header>
 
@@ -75,6 +77,7 @@ export default async function ProjetoPage({
               <div className="space-y-4 leading-relaxed">
                 {isDocumentary ? (
                   <>
+
                     <p>
                       This documentary records the journey of the project Raízes e Ritmos – Interculturalidade de Moçambique, developed over four months at CAPS II and CAPS AD in Tatuí, São Paulo, Brazil.
                       The project used music, storytelling, rhythms and cultural traditions as tools for welcoming, listening and building meaningful connections with people facing psychosocial challenges.
@@ -88,6 +91,7 @@ export default async function ProjetoPage({
                       It stands as a record of encounters, emotions and transformation through culture, showing how art, music can promote belonging, understanding and human connection.
                     </p>
                   </>
+
                 ) : (
                   <p>Descrição detalhada do projeto {title} em desenvolvimento...</p>
                 )}
