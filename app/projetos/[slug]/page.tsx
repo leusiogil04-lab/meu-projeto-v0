@@ -16,7 +16,7 @@ export default async function ProjetoPage({
   const youtubeId = "kUqtZH8k0Mk"; // ID do seu vídeo
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#DAEEFF]"> {/* Cor minimalista de fundo */}
+    <div className="flex min-h-screen flex-col bg-[#043E43]"> {/* Cor minimalista de fundo */}
       <Navigation />
       
       <main className="flex-grow pt-32 pb-20">
