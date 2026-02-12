@@ -11,12 +11,17 @@ export default async function ProjetoPage({
   const { slug } = await params;
   const title = slug.replace(/-/g, " ").toUpperCase();
 
-  // Verifica se o projeto atual é o documentário para exibir o vídeo
+  // Verificações de Projetos Específicos
   const isDocumentary = slug === "documentary";
-  const youtubeId = "kUqtZH8k0Mk"; // ID do seu vídeo
+  const isEPClamor = slug === "ep-clamor";
+
+  // Definição de IDs do YouTube
+  let youtubeId = "";
+  if (isDocumentary) youtubeId = "kUqtZH8k0Mk";
+  if (isEPClamor) youtubeId = "ivorxGT_JH8";
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#043E43]"> {/* Cor minimalista de fundo */}
+    <div className="flex min-h-screen flex-col bg-[#043E43]">
       <Navigation />
       
       <main className="flex-grow pt-32 pb-20">
@@ -24,30 +29,29 @@ export default async function ProjetoPage({
           
           <Link 
             href="/#portfolio" 
-            className="inline-flex items-center text-zinc-500 text-sm font-medium hover:text-primary transition-all mb-12"
+            className="inline-flex items-center text-zinc-300 text-sm font-medium hover:text-white transition-all mb-12"
           >
             <span className="mr-2">←</span> BACK TO PORTFOLIO
           </Link>
 
           <header className="text-center mb-16">
             <span className="text-primary text-xs font-bold tracking-[0.3em] uppercase">
-              {isDocumentary ? "Film & Research" : "Project Detail"}
+              {isDocumentary ? "Film & Research" : isEPClamor ? "Performance & Music" : "Project Detail"}
             </span>
-            <h1 className="mt-4 font-serif text-4xl md:text-6xl text-zinc-900 leading-tight">
+            <h1 className="mt-4 font-serif text-4xl md:text-6xl text-white leading-tight">
               {isDocumentary ? "DOCUMENTARY: Rhythm & Roots" : title}
             </h1>
-            {isDocumentary && (
-              <p className="mt-6 text-zinc-600 max-w-2xl mx-auto italic text-lg">
-
-                "A project that educates, welcomes and cooperates for  social sustainability."
-              </p>
-
-            )}
+            
+            {/* Subtítulos Condicionais */}
+            <p className="mt-6 text-zinc-300 max-w-2xl mx-auto italic text-lg">
+              {isDocumentary && "A project that educates, welcomes and cooperates for social sustainability."}
+              {isEPClamor && "Fusing traditional Marrapiko rhythms with contemporary global sounds."}
+            </p>
           </header>
 
-          {/* Seção do Vídeo ou Imagem Principal */}
-          <div className="relative w-full overflow-hidden rounded-2xl bg-white shadow-sm mb-16">
-            {isDocumentary ? (
+          {/* Seção de Mídia (Vídeo ou Imagem) */}
+          <div className="relative w-full overflow-hidden rounded-2xl bg-black shadow-2xl mb-16">
+            {youtubeId ? (
               <div className="aspect-video w-full">
                 <iframe
                   src={`https://www.youtube.com/embed/${youtubeId}`}
@@ -71,50 +75,57 @@ export default async function ProjetoPage({
           </div>
 
           {/* Conteúdo Detalhado */}
-          <div className="grid md:grid-cols-12 gap-12 border-t border-zinc-200 pt-12">
-            <div className="md:col-span-8 space-y-8 text-zinc-700">
-              <h2 className="text-2xl font-serif text-zinc-900">Overview</h2>
+          <div className="grid md:grid-cols-12 gap-12 border-t border-white/10 pt-12">
+            <div className="md:col-span-8 space-y-8 text-zinc-200">
+              <h2 className="text-2xl font-serif text-white uppercase tracking-wider">Overview</h2>
               <div className="space-y-4 leading-relaxed">
-                {isDocumentary ? (
+                {isDocumentary && (
                   <>
+                    <p>This documentary records the journey of the project Raízes e Ritmos – Interculturalidade de Moçambique, developed over four months at CAPS II and CAPS AD in Tatuí, São Paulo, Brazil.</p>
+                    <p>The project used music, storytelling, rhythms and cultural traditions as tools for welcoming, listening and building meaningful connections with people facing psychosocial challenges.</p>
+                    <p>The film presents the goals of the project, its working methods, and the experiences created with different groups inside the CAPS centres.</p>
+                  </>
+                )}
 
+                {isEPClamor && (
+                  <>
                     <p>
-                      This documentary records the journey of the project Raízes e Ritmos – Interculturalidade de Moçambique, developed over four months at CAPS II and CAPS AD in Tatuí, São Paulo, Brazil.
-                      The project used music, storytelling, rhythms and cultural traditions as tools for welcoming, listening and building meaningful connections with people facing psychosocial challenges.
+                      <strong>EP CLAMOR</strong> is an artistic performance that celebrates the fusion of Mozambican cultural heritage with modern musicality. 
+                      The live performance, captured in this video, showcases the vibrant energy of <em>Marrapiko</em> and other traditional rhythms.
                     </p>
                     <p>
-                      The film presents the goals of the project, its working methods, and the experiences created with different groups inside the CAPS centres.
-                      Throughout the process, art proved to be a powerful way to care, express feelings and connect people, encouraging exchange, shared learning and moments shaped by empathy and respect.
-                    </p>
-                    <p>
-                      The documentary also highlights the partnership with CAPS II and CAPS AD in Tatuí — including coordinators, teams and participants — whose openness and trust made the project possible.
-                      It stands as a record of encounters, emotions and transformation through culture, showing how art, music can promote belonging, understanding and human connection.
+                      Through a powerful dialogue between percussion, piano, and vocals, the project aims to bridge the gap between tradition and innovation, 
+                      offering the audience an immersive intercultural experience.
                     </p>
                   </>
+                )}
 
-                ) : (
-                  <p>Descrição detalhada do projeto {title} em desenvolvimento...</p>
+                {!isDocumentary && !isEPClamor && (
+                  <p>Detailed description for {title} is currently being developed.</p>
                 )}
               </div>
             </div>
 
+            {/* Sidebar de Informações Técnicas */}
             <div className="md:col-span-4">
-              <div className="bg-white p-8 rounded-xl shadow-sm border border-zinc-100 space-y-6">
+              <div className="bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-white/10 space-y-6">
                 <div>
                   <h3 className="text-primary text-[10px] font-bold tracking-widest uppercase mb-1">Year</h3>
-                  <p className="text-zinc-900 font-medium">2025/2026</p>
+                  <p className="text-white font-medium">{isDocumentary ? "2025/2026" : "2024"}</p>
                 </div>
                 <div>
-                  <h3 className="text-primary text-[10px] font-bold tracking-widest uppercase mb-1">Director</h3>
-                  <p className="text-zinc-900 font-medium">Leusio Gil</p>
+                  <h3 className="text-primary text-[10px] font-bold tracking-widest uppercase mb-1">Lead Artist</h3>
+                  <p className="text-white font-medium">Leusio Gil</p>
                 </div>
                 <div>
                   <h3 className="text-primary text-[10px] font-bold tracking-widest uppercase mb-1">Location</h3>
-                  <p className="text-zinc-900 font-medium">Tatuí, Brasil</p>
+                  <p className="text-white font-medium">{isDocumentary ? "Tatuí, Brasil" : "International Performance"}</p>
                 </div>
                 <div>
                   <h3 className="text-primary text-[10px] font-bold tracking-widest uppercase mb-1">Themes</h3>
-                  <p className="text-zinc-900 text-sm">Interculturality, Social Vulnerability, Art-therapy</p>
+                  <p className="text-white/80 text-sm">
+                    {isDocumentary ? "Interculturality, Art-therapy" : "Marrapiko, Contemporary Fusion, Live Music"}
+                  </p>
                 </div>
               </div>
             </div>
