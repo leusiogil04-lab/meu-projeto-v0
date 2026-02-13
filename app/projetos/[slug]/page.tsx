@@ -8,45 +8,42 @@ export default async function ProjetoPage({
 }: { 
   params: Promise<{ slug: string }> 
 }) {
-  // 1. Resolve e decodifica o slug para evitar erros com caracteres como "&" (%26)
+  // 1. Resolve os parâmetros da URL
   const resolvedParams = await params;
-  const decodedSlug = decodeURIComponent(resolvedParams.slug).toLowerCase();
+  const slugFromUrl = resolvedParams.slug;
   
-  // Versão limpa para a lógica de busca de IDs
+  // 2. Decodifica e limpa o slug para a lógica de busca
+  const decodedSlug = decodeURIComponent(slugFromUrl).toLowerCase();
   const cleanSlug = decodedSlug.replace(/[^a-z0-9]/g, "");
 
-  // 2. Verificações de Projetos
-  const isCulturalBridge = cleanSlug.includes("culturalbridge");
-  const isRhythmRoots = cleanSlug.includes("rhythm") || cleanSlug.includes("roots");
-  const isDocumentary = cleanSlug.includes("documentary");
-  const isEPClamor = cleanSlug.includes("epclamor") || cleanSlug.includes("clamor");
-  const isKuwalaBand = cleanSlug.includes("kuwalaband") || cleanSlug.includes("kuwala");
-  const isMoveConcert = cleanSlug.includes("moveconcert") || cleanSlug.includes("move");
-
-  const isAnyWorkshop = isCulturalBridge || isRhythmRoots;
-
-  // 3. Mapeamento dos IDs do YouTube conforme sua última solicitação
+  // 3. Mapeamento de IDs e Títulos
   let youtubeId = "";
-  if (isCulturalBridge) {
-    youtubeId = "xO4DV-Yp9NI"; // Vídeo do Cultural Bridge
-  } else if (isRhythmRoots) {
-    youtubeId = "NtTlNnURZoc"; // Vídeo trocado do Move Concert para cá
-  } else if (isDocumentary) {
-    youtubeId = "kUqtZH8k0Mk";
-  } else if (isEPClamor) {
-    youtubeId = "ivorxGT_JH8";
-  } else if (isKuwalaBand) {
-    youtubeId = "NRo4VMlkpEQ";
-  } else if (isMoveConcert) {
-    youtubeId = "Qscqy-i9YOM"; // Vídeo que estava no Rhythm Roots
-  }
+  let displayTitle = "";
 
-  // Título de exibição limpo
-  const displayTitle = isCulturalBridge 
-    ? "CULTURAL BRIDGE WORKSHOP" 
-    : isRhythmRoots 
-    ? "RHYTHM AND ROOTS WORKSHOPS" 
-    : decodedSlug.replace(/-/g, " ").toUpperCase();
+  if (cleanSlug.includes("culturalbridge")) {
+    youtubeId = "xO4DV-Yp9NI"; 
+    displayTitle = "CULTURAL BRIDGE WORKSHOP";
+  } 
+  else if (cleanSlug.includes("rhythm") || cleanSlug.includes("roots")) {
+    youtubeId = "NtTlNnURZoc"; 
+    displayTitle = "RHYTHM AND ROOTS WORKSHOPS";
+  }
+  else if (cleanSlug.includes("documentary")) {
+    youtubeId = "kUqtZH8k0Mk";
+    displayTitle = "DOCUMENTARY: RHYTHM & ROOTS";
+  }
+  else if (cleanSlug.includes("epclamor") || cleanSlug.includes("clamor")) {
+    youtubeId = "ivorxGT_JH8";
+    displayTitle = "EP CLAMOR";
+  }
+  else if (cleanSlug.includes("kuwalaband") || cleanSlug.includes("kuwala")) {
+    youtubeId = "NRo4VMlkpEQ";
+    displayTitle = "KUWALA BAND";
+  }
+  else if (cleanSlug.includes("moveconcert") || cleanSlug.includes("move")) {
+    youtubeId = "Qscqy-i9YOM";
+    displayTitle = "MOVE CONCERT";
+  }
 
   return (
     <div className="flex min-h-screen flex-col bg-[#043E43] text-white">
@@ -55,61 +52,49 @@ export default async function ProjetoPage({
       <main className="flex-grow pt-32 pb-20">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
           
-          <Link 
-            href="/#portfolio" 
-            className="inline-flex items-center text-zinc-300 text-sm font-medium hover:text-white transition-all mb-12"
-          >
+          <Link href="/#portfolio" className="inline-flex items-center text-zinc-300 text-sm font-medium hover:text-white mb-12 transition-colors">
             <span className="mr-2">←</span> BACK TO PORTFOLIO
           </Link>
 
           <header className="text-center mb-16">
             <span className="text-primary text-xs font-bold tracking-[0.3em] uppercase">
-              {isAnyWorkshop ? "Education & Community" : "Artistic Project"}
+              Artistic Project & Education
             </span>
             <h1 className="mt-4 font-serif text-4xl md:text-6xl text-white leading-tight uppercase">
-              {displayTitle}
+              {displayTitle || "PROJECT"}
             </h1>
           </header>
 
-          {/* ÁREA DO VÍDEO - CORRIGIDA PARA APARECER NA TELA */}
+          {/* SEÇÃO DO VÍDEO - TAMANHO IDEAL YOUTUBE (16:9) */}
           <div className="relative w-full mb-16 flex justify-center">
             {youtubeId ? (
-              <div 
-                className={`relative overflow-hidden rounded-2xl bg-black shadow-2xl border border-white/10 ${
-                  isAnyWorkshop 
-                  ? "w-[320px] h-[570px]" // Garante altura para vídeos verticais
-                  : "aspect-video w-full" 
-                }`}
-              >
+              <div className="w-full aspect-video overflow-hidden rounded-2xl bg-black shadow-2xl border border-white/10">
                 <iframe
-                  src={`https://www.youtube.com/embed/${youtubeId}?rel=0&modestbranding=1`}
+                  src={`https://www.youtube.com/embed/${youtubeId}?rel=0&modestbranding=1&autoplay=0`}
                   title={displayTitle}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
-                  className="absolute top-0 left-0 w-full h-full border-0"
+                  className="w-full h-full border-0"
                 ></iframe>
               </div>
             ) : (
-              <div className="aspect-video w-full rounded-2xl bg-zinc-800/50 flex items-center justify-center text-zinc-400 border border-white/10">
-                <p>Mídia não carregada para: {displayTitle}</p>
+              <div className="aspect-video w-full rounded-2xl bg-white/5 flex flex-col items-center justify-center text-zinc-400 border border-dashed border-white/20 p-10 text-center">
+                <p className="text-white font-bold">Video not found.</p>
+                <p className="text-xs opacity-50 font-mono mt-2">Slug: {slugFromUrl}</p>
               </div>
             )}
           </div>
 
+          {/* CONTEÚDO */}
           <div className="grid md:grid-cols-12 gap-12 border-t border-white/10 pt-12">
             <div className="md:col-span-8 space-y-8 text-zinc-200">
               <h2 className="text-2xl font-serif text-white uppercase tracking-wider">Overview</h2>
               <div className="space-y-4 leading-relaxed text-lg text-justify">
-                {isCulturalBridge && (
-                  <p>The <strong>Cultural Bridge Workshop</strong> focuses on connecting different musical backgrounds through percussive exchange.</p>
-                )}
-                {isRhythmRoots && (
-                  <p>The <strong>Rhythm and Roots Workshops</strong> are practical sessions designed to immerse participants in the vibrant percussive traditions of Mozambique.</p>
-                )}
-                {isDocumentary && <p>A documentary project exploring social sustainability through music.</p>}
-                {isEPClamor && <p>A performance piece fusing traditional rhythms with modern expression.</p>}
-                {isKuwalaBand && <p>An international musical dialogue between Mozambican and Norwegian traditions.</p>}
-                {isMoveConcert && <p>A live performance capturing the energy of cross-cultural collaboration.</p>}
+                <p>
+                  This project focuses on the intersection of rhythm, culture, and community. 
+                  Through {displayTitle.toLowerCase()}, we explore Mozambican musical heritage 
+                  and its power to connect people across different backgrounds.
+                </p>
               </div>
             </div>
 
