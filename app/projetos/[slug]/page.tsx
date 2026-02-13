@@ -8,25 +8,26 @@ export default async function ProjetoPage({
 }: { 
   params: Promise<{ slug: string }> 
 }) {
-  // 1. Resolve e decodifica o slug para evitar erros com o caractere "&"
+  // 1. Resolve e limpa o slug para evitar erros de URL (como o %26)
   const resolvedParams = await params;
-  const slug = decodeURIComponent(resolvedParams.slug); 
+  const decodedSlug = decodeURIComponent(resolvedParams.slug);
   
-  // Limpa o título para exibição
-  const title = slug.replace(/-/g, " ").toUpperCase();
+  // Cria o título removendo hifens e símbolos
+  const title = decodedSlug.replace(/-/g, " ").replace(/&/g, "AND").toUpperCase();
 
-  // 2. Verificações de Projetos (usando .includes para ser mais seguro)
-  const isDocumentary = slug.includes("documentary");
-  const isEPClamor = slug.includes("ep-clamor");
-  const isKuwalaBand = slug.includes("kuwala-band");
-  const isWorkshops = slug.includes("workshop") || slug.includes("roots");
+  // 2. Mapeamento de IDs e Formatos
+  // Verificamos se o slug contém palavras-chave para ser mais flexível
+  const isWorkshops = decodedSlug.toLowerCase().includes("workshop") || decodedSlug.toLowerCase().includes("roots");
+  const isDocumentary = decodedSlug.toLowerCase().includes("documentary");
+  const isEPClamor = decodedSlug.toLowerCase().includes("ep-clamor");
+  const isKuwalaBand = decodedSlug.toLowerCase().includes("kuwala-band");
 
-  // 3. IDs dos Vídeos do YouTube
+  // Definição do ID do YouTube baseado no que foi encontrado
   let youtubeId = "";
-  if (isDocumentary) youtubeId = "kUqtZH8k0Mk";
-  if (isEPClamor) youtubeId = "ivorxGT_JH8";
-  if (isKuwalaBand) youtubeId = "NRo4VMlkpEQ";
   if (isWorkshops) youtubeId = "NtTlNnURZoc";
+  else if (isDocumentary) youtubeId = "kUqtZH8k0Mk";
+  else if (isEPClamor) youtubeId = "ivorxGT_JH8";
+  else if (isKuwalaBand) youtubeId = "NRo4VMlkpEQ";
 
   return (
     <div className="flex min-h-screen flex-col bg-[#043E43]">
@@ -44,21 +45,21 @@ export default async function ProjetoPage({
 
           <header className="text-center mb-16">
             <span className="text-primary text-xs font-bold tracking-[0.3em] uppercase">
-              {isWorkshops ? "Education & Community" : isDocumentary ? "Film & Research" : "Performance & Music"}
+              {isWorkshops ? "Education & Community" : "Artistic Project"}
             </span>
             <h1 className="mt-4 font-serif text-4xl md:text-6xl text-white leading-tight uppercase">
-              {isDocumentary ? "DOCUMENTARY: Rhythm & Roots" : title}
+              {isWorkshops ? "RHYTHM AND ROOTS WORKSHOPS" : title}
             </h1>
           </header>
 
-          {/* SEÇÃO DE MÍDIA - CORREÇÃO PARA O VÍDEO APARECER */}
+          {/* ÁREA DO VÍDEO - AQUI É ONDE A MÁGICA ACONTECE */}
           <div className="relative w-full mb-16 flex justify-center">
             {youtubeId ? (
               <div 
                 className={`relative overflow-hidden rounded-2xl bg-black shadow-2xl border border-white/10 ${
                   isWorkshops 
-                  ? "w-[320px] h-[570px]" // Formato vertical fixo para Shorts
-                  : "aspect-video w-full"  // Formato horizontal para os outros
+                  ? "w-[320px] h-[570px]" // FORMATO VERTICAL PARA SHORTS
+                  : "aspect-video w-full"  // FORMATO HORIZONTAL PARA O RESTO
                 }`}
               >
                 <iframe
@@ -70,13 +71,12 @@ export default async function ProjetoPage({
                 ></iframe>
               </div>
             ) : (
-              <div className="aspect-video w-full rounded-2xl bg-zinc-800/50 flex items-center justify-center text-zinc-400 italic border border-white/10">
-                <p>Video ID not found for: {title}</p>
+              <div className="aspect-video w-full rounded-2xl bg-zinc-800/50 flex items-center justify-center text-zinc-400 border border-white/10">
+                <p>Mídia não carregada para: {title}</p>
               </div>
             )}
           </div>
 
-          {/* CONTEÚDO DETALHADO */}
           <div className="grid md:grid-cols-12 gap-12 border-t border-white/10 pt-12">
             <div className="md:col-span-8 space-y-8 text-zinc-200">
               <h2 className="text-2xl font-serif text-white uppercase tracking-wider">Overview</h2>
@@ -85,13 +85,13 @@ export default async function ProjetoPage({
                   <p>The <strong>Rhythm and Roots Workshops</strong> are practical sessions designed to immerse participants in the vibrant percussive traditions of Mozambique, fostering connection through rhythm.</p>
                 )}
                 {isDocumentary && (
-                  <p>This documentary records the journey of the project Raízes e Ritmos developed at CAPS II and CAPS AD in Tatuí, São Paulo.</p>
+                  <p>A documentary project that explores social sustainability through rhythm and roots.</p>
                 )}
                 {isEPClamor && (
-                  <p>EP CLAMOR celebrates the fusion of Mozambican cultural heritage with modern musicality.</p>
+                  <p>An exploration of contemporary sounds fused with traditional Mozambican identity.</p>
                 )}
                 {isKuwalaBand && (
-                  <p>KUWALA BAND is a musical collective promoting a dialogue between African and European sonorities.</p>
+                  <p>The musical dialogue between different cultural backgrounds and traditions.</p>
                 )}
               </div>
             </div>
@@ -111,6 +111,7 @@ export default async function ProjetoPage({
           </div>
         </div>
       </main>
+
       <Footer />
     </div>
   )
