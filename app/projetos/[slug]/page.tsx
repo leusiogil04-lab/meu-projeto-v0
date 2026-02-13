@@ -102,7 +102,7 @@ export default async function ProjetoPage({
                 )}
                 {isEPClamor && (
                    <>
-                    <p>The<em>EP CLAMOR</em>  brings traditional Afro sonorities blended with modern jazz elements. Through compositions that narrate exchange experiences, social critiques, festive moments and a touch of romanticism, the project also incorporates aspects of Mozambican traditions through selected folk songs. The audience will be invited to sing, dance and feel the energy of Mozambique through rich polyrhythms.</p>
+                    <p>The <em>EP CLAMOR</em>  brings traditional Afro sonorities blended with modern jazz elements. Through compositions that narrate exchange experiences, social critiques, festive moments and a touch of romanticism, the project also incorporates aspects of Mozambican traditions through selected folk songs. The audience will be invited to sing, dance and feel the energy of Mozambique through rich polyrhythms.</p>
                    </>
                 )}
                 {isKuwalaBand && (
