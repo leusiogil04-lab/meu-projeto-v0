@@ -102,8 +102,7 @@ export default async function ProjetoPage({
                 )}
                 {isEPClamor && (
                    <>
-                    <p><strong>O grito musical de uma nova era moçambicana.</strong> O <em>EP CLAMOR</em> é uma obra de vanguarda que funde a herança cultural de Moçambique com a estética sonora moderna. A performance captura um artista em pleno domínio de sua identidade, utilizando a música como um clamor por reconhecimento.</p>
-                    <p>Com arranjos que desafiam categorias tradicionais, o projeto é um diálogo vibrante entre o passado e o futuro, carregando as dores e as alegrias de um povo em melodias sofisticadas.</p>
+                    <p>The<em>EP CLAMOR</em>  brings traditional Afro sonorities blended with modern jazz elements. Through compositions that narrate exchange experiences, social critiques, festive moments and a touch of romanticism, the project also incorporates aspects of Mozambican traditions through selected folk songs. The audience will be invited to sing, dance and feel the energy of Mozambique through rich polyrhythms.</p>
                    </>
                 )}
                 {isKuwalaBand && (
