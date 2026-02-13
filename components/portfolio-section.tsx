@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
-import Link from "next/link" // Importado para permitir a navegação
+import Link from "next/link"
 import { cn } from "@/lib/utils"
 
 const portfolioItems = [
@@ -78,54 +78,63 @@ export function PortfolioSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}
         >
-          <span className="text-primary text-sm font-medium tracking-widest uppercase">
+          {/* Alterado para text-white para combinar com o resto */}
+          <span className="text-white text-sm font-medium tracking-widest uppercase opacity-70">
             Portfolio
           </span>
-          <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-foreground leading-tight">
+          <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-white leading-tight">
             Selected Works
           </h2>
-          <p className="mt-6 text-muted-foreground leading-relaxed">
+          <p className="mt-6 text-white/70 leading-relaxed">
             A curated collection of performances, compositions, and educational 
-            projects from around the world.
+            projects.
           </p>
         </div>
 
         <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {portfolioItems.map((item, index) => (
-            <Link 
-              key={item.id} 
-              // Cria um link dinâmico baseado no título: "EP Clamor" vira "/projetos/ep-clamor"
-              href={`/projetos/${item.title.toLowerCase().replace(/ /g, "-")}`}
-              className={cn(
-                "group relative aspect-[4/3] overflow-hidden cursor-pointer transition-all duration-1000 ease-out",
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12",
-              )}
-              style={{ transitionDelay: `${(index + 1) * 100}ms` }}
-            >
-              <Image
-                src={item.image || "/placeholder.svg"}
-                alt={item.title}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              />
-              
-              {/* Overlay que aparece no Hover */}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/70 transition-colors duration-300 flex items-center justify-center">
-                <div className="text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-4">
-                  <span className="text-primary text-xs font-medium tracking-widest uppercase">
-                    {item.category}
-                  </span>
-                  <h3 className="mt-2 text-white font-serif text-lg md:text-xl font-medium">
-                    {item.title}
-                  </h3>
-                  <div className="mt-4 inline-block px-4 py-2 border border-white/20 text-white text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-colors">
-                    View Project
+          {portfolioItems.map((item, index) => {
+            // Lógica de URL melhorada: transforma "Rhythm & Roots" em "rhythm-roots"
+            const projectSlug = item.title
+              .toLowerCase()
+              .replace(/&/g, "") // Remove o &
+              .replace(/\s+/g, "-") // Transforma espaços em hífens
+              .replace(/-+/g, "-") // Evita hífens duplos
+
+            return (
+              <Link 
+                key={item.id} 
+                href={`/projetos/${projectSlug}`}
+                className={cn(
+                  "group relative aspect-[4/3] overflow-hidden cursor-pointer transition-all duration-1000 ease-out",
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12",
+                )}
+                style={{ transitionDelay: `${(index + 1) * 100}ms` }}
+              >
+                <Image
+                  src={item.image || "/placeholder.svg"}
+                  alt={item.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+                
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/70 transition-colors duration-300 flex items-center justify-center">
+                  <div className="text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-4">
+                    {/* Texto do card em branco */}
+                    <span className="text-white text-xs font-medium tracking-widest uppercase opacity-80">
+                      {item.category}
+                    </span>
+                    <h3 className="mt-2 text-white font-serif text-lg md:text-xl font-medium">
+                      {item.title}
+                    </h3>
+                    <div className="mt-4 inline-block px-4 py-2 border border-white text-white text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-colors">
+                      View Project
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            )
+          })}
         </div>
       </div>
     </section>
