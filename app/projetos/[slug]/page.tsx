@@ -14,11 +14,13 @@ export default async function ProjetoPage({
   // Verificações de Projetos Específicos
   const isDocumentary = slug === "documentary";
   const isEPClamor = slug === "ep-clamor";
+  const isKuwalaBand = slug === "kuwala-band";
 
   // Definição de IDs do YouTube
   let youtubeId = "";
   if (isDocumentary) youtubeId = "kUqtZH8k0Mk";
   if (isEPClamor) youtubeId = "ivorxGT_JH8";
+  if (isKuwalaBand) youtubeId = "NRo4VMlkpEQ";
 
   return (
     <div className="flex min-h-screen flex-col bg-[#043E43]">
@@ -36,16 +38,17 @@ export default async function ProjetoPage({
 
           <header className="text-center mb-16">
             <span className="text-primary text-xs font-bold tracking-[0.3em] uppercase">
-              {isDocumentary ? "Film & Research" : isEPClamor ? "Performance & Music" : "Project Detail"}
+              {isDocumentary ? "Film & Research" : isEPClamor || isKuwalaBand ? "Performance & Music" : "Project Detail"}
             </span>
-            <h1 className="mt-4 font-serif text-4xl md:text-6xl text-white leading-tight">
-              {isDocumentary ? "DOCUMENTARY: Rhythm & Roots" : title}
+            <h1 className="mt-4 font-serif text-4xl md:text-6xl text-white leading-tight uppercase">
+              {isDocumentary ? "DOCUMENTARY: Rhythm & Roots" : isKuwalaBand ? "KUWALA BAND" : title}
             </h1>
             
             {/* Subtítulos Condicionais */}
             <p className="mt-6 text-zinc-300 max-w-2xl mx-auto italic text-lg">
               {isDocumentary && "A project that educates, welcomes and cooperates for social sustainability."}
               {isEPClamor && "Fusing traditional Marrapiko rhythms with contemporary global sounds."}
+              {isKuwalaBand && "A dialogue between Mozambican and Norwegian musical traditions."}
             </p>
           </header>
 
@@ -83,7 +86,6 @@ export default async function ProjetoPage({
                   <>
                     <p>This documentary records the journey of the project Raízes e Ritmos – Interculturalidade de Moçambique, developed over four months at CAPS II and CAPS AD in Tatuí, São Paulo, Brazil.</p>
                     <p>The project used music, storytelling, rhythms and cultural traditions as tools for welcoming, listening and building meaningful connections with people facing psychosocial challenges.</p>
-                    <p>The film presents the goals of the project, its working methods, and the experiences created with different groups inside the CAPS centres.</p>
                   </>
                 )}
 
@@ -91,16 +93,27 @@ export default async function ProjetoPage({
                   <>
                     <p>
                       <strong>EP CLAMOR</strong> is an artistic performance that celebrates the fusion of Mozambican cultural heritage with modern musicality. 
-                      The live performance, captured in this video, showcases the vibrant energy of <em>Marrapiko</em> and other traditional rhythms.
                     </p>
                     <p>
-                      Through a powerful dialogue between percussion, piano, and vocals, the project aims to bridge the gap between tradition and innovation, 
-                      offering the audience an immersive intercultural experience.
+                      Through a powerful dialogue between percussion, piano, and vocals, the project aims to bridge the gap between tradition and innovation.
                     </p>
                   </>
                 )}
 
-                {!isDocumentary && !isEPClamor && (
+                {isKuwalaBand && (
+                  <>
+                    <p>
+                      <strong>KUWALA BAND</strong> is a unique musical collective that promotes an artistic meeting between African and European sonorities. 
+                      The project specifically explores the intersection between Mozambican rhythms and Norwegian musical elements.
+                    </p>
+                    <p>
+                      The performance, such as the one held at Sesc Piracicaba, highlights the group's ability to create a harmonious and energetic soundscape 
+                      that transcends borders, celebrating diversity through instruments like the saxophone, piano, and traditional percussion.
+                    </p>
+                  </>
+                )}
+
+                {!isDocumentary && !isEPClamor && !isKuwalaBand && (
                   <p>Detailed description for {title} is currently being developed.</p>
                 )}
               </div>
@@ -111,7 +124,7 @@ export default async function ProjetoPage({
               <div className="bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-white/10 space-y-6">
                 <div>
                   <h3 className="text-primary text-[10px] font-bold tracking-widest uppercase mb-1">Year</h3>
-                  <p className="text-white font-medium">{isDocumentary ? "2025/2026" : "2024"}</p>
+                  <p className="text-white font-medium">{isDocumentary ? "2025/2026" : "2024/2025"}</p>
                 </div>
                 <div>
                   <h3 className="text-primary text-[10px] font-bold tracking-widest uppercase mb-1">Lead Artist</h3>
@@ -119,12 +132,12 @@ export default async function ProjetoPage({
                 </div>
                 <div>
                   <h3 className="text-primary text-[10px] font-bold tracking-widest uppercase mb-1">Location</h3>
-                  <p className="text-white font-medium">{isDocumentary ? "Tatuí, Brasil" : "International Performance"}</p>
+                  <p className="text-white font-medium">{isKuwalaBand ? "Sesc Piracicaba / International" : isDocumentary ? "Tatuí, Brasil" : "International Performance"}</p>
                 </div>
                 <div>
                   <h3 className="text-primary text-[10px] font-bold tracking-widest uppercase mb-1">Themes</h3>
-                  <p className="text-white/80 text-sm">
-                    {isDocumentary ? "Interculturality, Art-therapy" : "Marrapiko, Contemporary Fusion, Live Music"}
+                  <p className="text-white/80 text-sm uppercase">
+                    {isKuwalaBand ? "Afro-Norwegian Fusion, World Music" : isDocumentary ? "Interculturality, Art-therapy" : "Marrapiko, Contemporary Fusion"}
                   </p>
                 </div>
               </div>
