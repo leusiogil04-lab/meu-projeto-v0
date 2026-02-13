@@ -8,38 +8,27 @@ export default async function ProjetoPage({
 }: { 
   params: Promise<{ slug: string }> 
 }) {
-  // 1. Resolve e decodifica o slug
+  // 1. Resolve e decodifica o slug para aceitar caracteres como "&"
   const resolvedParams = await params;
-  const rawSlug = resolvedParams.slug;
-  const decodedSlug = decodeURIComponent(rawSlug).toLowerCase();
+  const decodedSlug = decodeURIComponent(resolvedParams.slug).toLowerCase();
   
-  // Criamos uma versão "limpa" do slug para a lógica de verificação (remove símbolos como &)
-  const cleanSlug = decodedSlug.replace(/[^a-z0-z]/g, "");
+  // Cria o título legível
+  const title = decodedSlug.replace(/-/g, " ").toUpperCase();
 
-  // 2. Verificações de Projetos (mais robustas)
-  // Se o link tiver "rhythm", "roots" ou "workshop", ele vai ativar o isWorkshops
-  const isWorkshops = cleanSlug.includes("workshop") || cleanSlug.includes("roots") || cleanSlug.includes("rhythm");
-  const isDocumentary = cleanSlug.includes("documentary");
-  const isEPClamor = cleanSlug.includes("epclamor") || cleanSlug.includes("clamor");
-  const isKuwalaBand = cleanSlug.includes("kuwalaband") || cleanSlug.includes("kuwala");
-  const isMoveConcert = cleanSlug.includes("moveconcert") || cleanSlug.includes("move");
+  // 2. Verificações de Projetos (mais flexíveis)
+  const isWorkshops = decodedSlug.includes("workshop") || decodedSlug.includes("roots");
+  const isDocumentary = decodedSlug.includes("documentary");
+  const isEPClamor = decodedSlug.includes("ep-clamor");
+  const isKuwalaBand = decodedSlug.includes("kuwala-band");
+  const isMoveConcert = decodedSlug.includes("move-concert");
 
-  // Título para exibição
-  const displayTitle = isWorkshops ? "RHYTHM AND ROOTS WORKSHOPS" : decodedSlug.replace(/-/g, " ").toUpperCase();
-
-  // 3. Mapeamento dos IDs do YouTube
+  // 3. Mapeamento dos IDs do YouTube (Adicionado o novo vídeo)
   let youtubeId = "";
-  if (isWorkshops) {
-    youtubeId = "Qscqy-i9YOM"; // O vídeo que você enviou agora
-  } else if (isDocumentary) {
-    youtubeId = "kUqtZH8k0Mk";
-  } else if (isEPClamor) {
-    youtubeId = "ivorxGT_JH8";
-  } else if (isKuwalaBand) {
-    youtubeId = "NRo4VMlkpEQ";
-  } else if (isMoveConcert) {
-    youtubeId = "NtTlNnURZoc"; // Workshop antigo ou ID do Move
-  }
+  if (isWorkshops) youtubeId = "NtTlNnURZoc"; // NOVO VÍDEO QUE VOCÊ ENVIOU
+  else if (isDocumentary) youtubeId = "kUqtZH8k0Mk";
+  else if (isEPClamor) youtubeId = "ivorxGT_JH8";
+  else if (isKuwalaBand) youtubeId = "NRo4VMlkpEQ";
+  else if (isMoveConcert) youtubeId = "Qscqy-i9YOM";
 
   return (
     <div className="flex min-h-screen flex-col bg-[#043E43]">
@@ -60,7 +49,7 @@ export default async function ProjetoPage({
               {isWorkshops ? "Education & Community" : "Artistic Project"}
             </span>
             <h1 className="mt-4 font-serif text-4xl md:text-6xl text-white leading-tight uppercase">
-              {displayTitle}
+              {isWorkshops ? "RHYTHM AND ROOTS WORKSHOPS" : title}
             </h1>
           </header>
 
@@ -70,13 +59,13 @@ export default async function ProjetoPage({
               <div 
                 className={`relative overflow-hidden rounded-2xl bg-black shadow-2xl border border-white/10 ${
                   isWorkshops 
-                  ? "w-[320px] h-[570px]" // FORMATO VERTICAL PARA SHORTS/WORKSHOP
+                  ? "w-[320px] h-[570px]" // FORMATO VERTICAL PARA SHORTS
                   : "aspect-video w-full"  // FORMATO HORIZONTAL PARA O RESTO
                 }`}
               >
                 <iframe
                   src={`https://www.youtube.com/embed/${youtubeId}?rel=0&modestbranding=1`}
-                  title={displayTitle}
+                  title={title}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
                   className="absolute top-0 left-0 w-full h-full border-0"
@@ -84,11 +73,12 @@ export default async function ProjetoPage({
               </div>
             ) : (
               <div className="aspect-video w-full rounded-2xl bg-zinc-800/50 flex items-center justify-center text-zinc-400 border border-white/10">
-                <p>Mídia não carregada para: {displayTitle}</p>
+                <p>Mídia não carregada para: {title}</p>
               </div>
             )}
           </div>
 
+          {/* DESCRIÇÃO DO PROJETO */}
           <div className="grid md:grid-cols-12 gap-12 border-t border-white/10 pt-12">
             <div className="md:col-span-8 space-y-8 text-zinc-200">
               <h2 className="text-2xl font-serif text-white uppercase tracking-wider">Overview</h2>
