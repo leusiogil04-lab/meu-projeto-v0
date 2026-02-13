@@ -8,26 +8,27 @@ export default async function ProjetoPage({
 }: { 
   params: Promise<{ slug: string }> 
 }) {
-  // 1. Resolve e limpa o slug para evitar erros de URL (como o %26)
+  // 1. Resolve e decodifica o slug para aceitar caracteres como "&"
   const resolvedParams = await params;
-  const decodedSlug = decodeURIComponent(resolvedParams.slug);
+  const decodedSlug = decodeURIComponent(resolvedParams.slug).toLowerCase();
   
-  // Cria o título removendo hifens e símbolos
-  const title = decodedSlug.replace(/-/g, " ").replace(/&/g, "AND").toUpperCase();
+  // Cria o título legível
+  const title = decodedSlug.replace(/-/g, " ").toUpperCase();
 
-  // 2. Mapeamento de IDs e Formatos
-  // Verificamos se o slug contém palavras-chave para ser mais flexível
-  const isWorkshops = decodedSlug.toLowerCase().includes("workshop") || decodedSlug.toLowerCase().includes("roots");
-  const isDocumentary = decodedSlug.toLowerCase().includes("documentary");
-  const isEPClamor = decodedSlug.toLowerCase().includes("ep-clamor");
-  const isKuwalaBand = decodedSlug.toLowerCase().includes("kuwala-band");
+  // 2. Verificações de Projetos (mais flexíveis)
+  const isWorkshops = decodedSlug.includes("workshop") || decodedSlug.includes("roots");
+  const isDocumentary = decodedSlug.includes("documentary");
+  const isEPClamor = decodedSlug.includes("ep-clamor");
+  const isKuwalaBand = decodedSlug.includes("kuwala-band");
+  const isMoveConcert = decodedSlug.includes("move-concert");
 
-  // Definição do ID do YouTube baseado no que foi encontrado
+  // 3. Mapeamento dos IDs do YouTube (Adicionado o novo vídeo)
   let youtubeId = "";
-  if (isWorkshops) youtubeId = "NtTlNnURZoc";
+  if (isWorkshops) youtubeId = "Qscqy-i9YOM"; // NOVO VÍDEO QUE VOCÊ ENVIOU
   else if (isDocumentary) youtubeId = "kUqtZH8k0Mk";
   else if (isEPClamor) youtubeId = "ivorxGT_JH8";
   else if (isKuwalaBand) youtubeId = "NRo4VMlkpEQ";
+  else if (isMoveConcert) youtubeId = "NtTlNnURZoc";
 
   return (
     <div className="flex min-h-screen flex-col bg-[#043E43]">
@@ -52,7 +53,7 @@ export default async function ProjetoPage({
             </h1>
           </header>
 
-          {/* ÁREA DO VÍDEO - AQUI É ONDE A MÁGICA ACONTECE */}
+          {/* SEÇÃO DO VÍDEO VERTICAL PARA WORKSHOP */}
           <div className="relative w-full mb-16 flex justify-center">
             {youtubeId ? (
               <div 
@@ -77,21 +78,24 @@ export default async function ProjetoPage({
             )}
           </div>
 
+          {/* DESCRIÇÃO DO PROJETO */}
           <div className="grid md:grid-cols-12 gap-12 border-t border-white/10 pt-12">
             <div className="md:col-span-8 space-y-8 text-zinc-200">
               <h2 className="text-2xl font-serif text-white uppercase tracking-wider">Overview</h2>
-              <div className="space-y-4 leading-relaxed text-lg">
+              <div className="space-y-4 leading-relaxed text-lg text-justify">
                 {isWorkshops && (
-                  <p>The <strong>Rhythm and Roots Workshops</strong> are practical sessions designed to immerse participants in the vibrant percussive traditions of Mozambique, fostering connection through rhythm.</p>
+                  <p>
+                    The <strong>Rhythm and Roots Workshops</strong> are practical sessions designed to immerse participants in the vibrant percussive traditions of Mozambique, fostering connection through rhythm. This project explores the deep cultural roots of African drumming as a tool for community building and education.
+                  </p>
                 )}
                 {isDocumentary && (
-                  <p>A documentary project that explores social sustainability through rhythm and roots.</p>
+                  <p>A documentary project that explores social sustainability and cultural heritage through music.</p>
                 )}
                 {isEPClamor && (
-                  <p>An exploration of contemporary sounds fused with traditional Mozambican identity.</p>
+                  <p>A performance piece fusing traditional Marrapiko rhythms with modern artistic expression.</p>
                 )}
                 {isKuwalaBand && (
-                  <p>The musical dialogue between different cultural backgrounds and traditions.</p>
+                  <p>An international musical dialogue between Mozambican and Norwegian traditions.</p>
                 )}
               </div>
             </div>
