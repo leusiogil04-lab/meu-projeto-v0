@@ -24,11 +24,11 @@ export default async function ProjetoPage({
 
   // 3. Mapeamento dos IDs do YouTube (Adicionado o novo vídeo)
   let youtubeId = "";
-  if (isWorkshops) youtubeId = "Qscqy-i9YOM"; // NOVO VÍDEO QUE VOCÊ ENVIOU
+  if (isWorkshops) youtubeId = "NtTlNnURZoc"; // NOVO VÍDEO QUE VOCÊ ENVIOU
   else if (isDocumentary) youtubeId = "kUqtZH8k0Mk";
   else if (isEPClamor) youtubeId = "ivorxGT_JH8";
   else if (isKuwalaBand) youtubeId = "NRo4VMlkpEQ";
-  else if (isMoveConcert) youtubeId = "NtTlNnURZoc";
+  else if (isMoveConcert) youtubeId = "Qscqy-i9YOM";
 
   return (
     <div className="flex min-h-screen flex-col bg-[#043E43]">
