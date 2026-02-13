@@ -86,8 +86,9 @@ export default async function ProjetoPage({
                 )}
                 {isRhythmRoots && (
                   <>
-                    <p><strong>Resgate, ancestralidade e movimento.</strong> Nos <em>Rhythm and Roots Workshops</em>, o foco é a imersão profunda nas matrizes rítmicas de Moçambique. O projeto apresenta uma narrativa de preservação viva: Leusio Gil não apenas ensina toques, mas transmite o peso histórico e espiritual de cada cadência.</p>
-                    <p>As sessões são dinâmicas e viscerais, focadas na pedagogia do corpo e na transmissão oral. O projeto atua como um arquivo vivo, garantindo que as raízes do Marrapiko e de outros ritmos tradicionais continuem a florescer.</p>
+                    <p><strong>Rhythm and Roots Workshops</strong> is a project that uses music and interculturality from Mozambique to educate, welcome, and share the diversity of cultures, especially for people in situations of social vulnerability. Music and culture have the power to heal people from within, to embrace those who are often forgotten, and to remind everyone that they have value and a story to tell.</p>
+                    <p>The project reaches people in educational institutions, social institutions, shelters, and marginalized communities.
+                       Raízes e Ritmos uses music as a tool for social transformation, giving people the opportunity to express themselves through music in group choirs and educational workshops.</p>
                   </>
                 )}
                 {isDocumentary && (
