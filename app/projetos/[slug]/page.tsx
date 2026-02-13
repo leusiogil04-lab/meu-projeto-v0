@@ -8,21 +8,18 @@ export default async function ProjetoPage({
 }: { 
   params: Promise<{ slug: string }> 
 }) {
-  // 1. CORREÇÃO DO ERRO 'REPLACE': Aguardar o params antes de usar
+  // 1. Resolve params para evitar o erro de 'replace' visto nas capturas
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
-  
-  // Limpar o título para exibição
   const title = slug.replace(/-/g, " ").toUpperCase();
 
-  // 2. MAPEAMENTO DE DADOS (Garante que o conteúdo apareça)
+  // 2. Verificações de Projetos
   const isDocumentary = slug === "documentary";
   const isEPClamor = slug === "ep-clamor";
   const isKuwalaBand = slug === "kuwala-band";
-  // Note o slug exato para workshops
-  const isWorkshops = slug === "rhythm-and-roots-workshops" || slug.includes("workshop");
+  const isWorkshops = slug.includes("workshop");
 
-  // Definição de IDs do YouTube
+  // 3. Definição de IDs do YouTube
   let youtubeId = "";
   if (isDocumentary) youtubeId = "kUqtZH8k0Mk";
   if (isEPClamor) youtubeId = "ivorxGT_JH8";
@@ -50,19 +47,16 @@ export default async function ProjetoPage({
             <h1 className="mt-4 font-serif text-4xl md:text-6xl text-white leading-tight uppercase">
               {isDocumentary ? "DOCUMENTARY: Rhythm & Roots" : title}
             </h1>
-            
-            <div className="mt-6 text-zinc-300 max-w-2xl mx-auto italic text-lg">
-              {isDocumentary && <p>"A project that educates, welcomes and cooperates for social sustainability."</p>}
-              {isEPClamor && <p>"Fusing traditional Marrapiko rhythms with contemporary global sounds."</p>}
-              {isKuwalaBand && <p>"A dialogue between Mozambican and Norwegian musical traditions."</p>}
-              {isWorkshops && <p>"Sharing Mozambican heritage through hands-on rhythmic experiences."</p>}
-            </div>
           </header>
 
-          {/* Player do YouTube */}
-          <div className="relative w-full overflow-hidden rounded-2xl bg-black shadow-2xl mb-16">
+          {/* Seção de Mídia: Lógica de Formato Diferenciada */}
+          <div className="relative w-full mb-16 flex justify-center">
             {youtubeId ? (
-              <div className={isWorkshops ? "aspect-[9/16] max-w-[350px] mx-auto" : "aspect-video w-full"}>
+              <div className={`relative overflow-hidden rounded-2xl bg-black shadow-2xl border border-white/10 ${
+                isWorkshops 
+                ? "aspect-[9/16] w-full max-w-[350px]" // Vertical apenas para workshops
+                : "aspect-video w-full"               // Horizontal para o resto
+              }`}>
                 <iframe
                   src={`https://www.youtube.com/embed/${youtubeId}`}
                   title={title}
@@ -72,32 +66,27 @@ export default async function ProjetoPage({
                 ></iframe>
               </div>
             ) : (
-              <div className="relative aspect-video flex items-center justify-center bg-zinc-800 text-zinc-500">
-                 <p>Image for {title} not found in /imagens/{slug}.jpg</p>
+              <div className="aspect-video w-full rounded-2xl bg-zinc-800 flex items-center justify-center text-zinc-500 italic">
+                <p>Mídia em desenvolvimento para: {title}</p>
               </div>
             )}
           </div>
 
-          {/* Seção de Texto */}
           <div className="grid md:grid-cols-12 gap-12 border-t border-white/10 pt-12">
             <div className="md:col-span-8 space-y-8 text-zinc-200">
               <h2 className="text-2xl font-serif text-white uppercase tracking-wider">Overview</h2>
-              <div className="space-y-4 leading-relaxed">
+              <div className="space-y-4 leading-relaxed text-lg">
                 {isWorkshops && (
-                  <p>The Rhythm and Roots Workshops are practical sessions designed to immerse participants in the vibrant percussive traditions of Mozambique. Rhythm becomes a universal language for connection and community building.</p>
+                  <p>The <strong>Rhythm and Roots Workshops</strong> are practical sessions designed to immerse participants in the vibrant percussive traditions of Mozambique, fostering connection through rhythm.</p>
                 )}
                 {isDocumentary && (
                   <p>This documentary records the journey of the project Raízes e Ritmos developed at CAPS II and CAPS AD in Tatuí, São Paulo.</p>
                 )}
                 {isEPClamor && (
-                  <p>EP CLAMOR is an artistic performance that celebrates the fusion of Mozambican cultural heritage with modern musicality.</p>
+                  <p>EP CLAMOR celebrates the fusion of Mozambican cultural heritage with modern musicality in a vibrant live performance.</p>
                 )}
                 {isKuwalaBand && (
-                  <p>KUWALA BAND is a unique musical collective that promotes an artistic meeting between African and European sonorities.</p>
-                )}
-                {/* Fallback caso nenhum slug bata */}
-                {!isWorkshops && !isDocumentary && !isEPClamor && !isKuwalaBand && (
-                   <p>Content for {title} coming soon.</p>
+                  <p>KUWALA BAND is a musical collective promoting a dialogue between African (Mozambique) and European (Norway) sonorities.</p>
                 )}
               </div>
             </div>
@@ -109,7 +98,7 @@ export default async function ProjetoPage({
                   <p className="text-white font-medium">2024 - 2026</p>
                 </div>
                 <div>
-                  <h3 className="text-primary text-[10px] font-bold tracking-widest uppercase mb-1">Artist</h3>
+                  <h3 className="text-primary text-[10px] font-bold tracking-widest uppercase mb-1">Lead Artist</h3>
                   <p className="text-white font-medium">Leusio Gil</p>
                 </div>
               </div>
