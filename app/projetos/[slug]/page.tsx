@@ -15,12 +15,14 @@ export default async function ProjetoPage({
   const isDocumentary = slug === "documentary";
   const isEPClamor = slug === "ep-clamor";
   const isKuwalaBand = slug === "kuwala-band";
+  const isWorkshops = slug === "rhythm-and-roots-workshops";
 
   // Definição de IDs do YouTube
   let youtubeId = "";
   if (isDocumentary) youtubeId = "kUqtZH8k0Mk";
   if (isEPClamor) youtubeId = "ivorxGT_JH8";
   if (isKuwalaBand) youtubeId = "NRo4VMlkpEQ";
+  if (isWorkshops) youtubeId = "NtTlNnURZoc"; // ID do vídeo Shorts
 
   return (
     <div className="flex min-h-screen flex-col bg-[#043E43]">
@@ -38,24 +40,22 @@ export default async function ProjetoPage({
 
           <header className="text-center mb-16">
             <span className="text-primary text-xs font-bold tracking-[0.3em] uppercase">
-              {isDocumentary ? "Film & Research" : isEPClamor || isKuwalaBand ? "Performance & Music" : "Project Detail"}
+              {isWorkshops ? "Education & Community" : isDocumentary ? "Film & Research" : "Performance & Music"}
             </span>
             <h1 className="mt-4 font-serif text-4xl md:text-6xl text-white leading-tight uppercase">
-              {isDocumentary ? "DOCUMENTARY: Rhythm & Roots" : isKuwalaBand ? "KUWALA BAND" : title}
+              {isWorkshops ? "Rhythm and Roots Workshops" : isDocumentary ? "DOCUMENTARY: Rhythm & Roots" : title}
             </h1>
             
-            {/* Subtítulos Condicionais */}
             <p className="mt-6 text-zinc-300 max-w-2xl mx-auto italic text-lg">
+              {isWorkshops && "Sharing Mozambican heritage through hands-on rhythmic experiences."}
               {isDocumentary && "A project that educates, welcomes and cooperates for social sustainability."}
-              {isEPClamor && "Fusing traditional Marrapiko rhythms with contemporary global sounds."}
-              {isKuwalaBand && "A dialogue between Mozambican and Norwegian musical traditions."}
             </p>
           </header>
 
-          {/* Seção de Mídia (Vídeo ou Imagem) */}
+          {/* Seção de Mídia - Ajustada para Shorts no caso dos Workshops */}
           <div className="relative w-full overflow-hidden rounded-2xl bg-black shadow-2xl mb-16">
             {youtubeId ? (
-              <div className="aspect-video w-full">
+              <div className={isWorkshops ? "aspect-[9/16] max-w-[350px] mx-auto" : "aspect-video w-full"}>
                 <iframe
                   src={`https://www.youtube.com/embed/${youtubeId}`}
                   title="YouTube video player"
@@ -66,13 +66,7 @@ export default async function ProjetoPage({
               </div>
             ) : (
               <div className="relative aspect-video">
-                <Image 
-                  src={`/imagens/${slug}.jpg`} 
-                  alt={title}
-                  fill
-                  className="object-cover"
-                  priority
-                />
+                <Image src={`/imagens/${slug}.jpg`} alt={title} fill className="object-cover" priority />
               </div>
             )}
           </div>
@@ -82,62 +76,42 @@ export default async function ProjetoPage({
             <div className="md:col-span-8 space-y-8 text-zinc-200">
               <h2 className="text-2xl font-serif text-white uppercase tracking-wider">Overview</h2>
               <div className="space-y-4 leading-relaxed">
+                {isWorkshops && (
+                  <>
+                    <p>
+                      The <strong>Rhythm and Roots Workshops</strong> are practical sessions designed to immerse participants in the vibrant percussive traditions of Mozambique.
+                    </p>
+                    <p>
+                      More than just music lessons, these workshops serve as a space for cultural exchange, where rhythm becomes a universal language for connection, storytelling, and community building. Participants explore traditional instruments and the deep-rooted meanings behind each beat.
+                    </p>
+                  </>
+                )}
+
                 {isDocumentary && (
-                  <>
-                    <p>This documentary records the journey of the project Raízes e Ritmos – Interculturalidade de Moçambique, developed over four months at CAPS II and CAPS AD in Tatuí, São Paulo, Brazil.</p>
-                    <p>The project used music, storytelling, rhythms and cultural traditions as tools for welcoming, listening and building meaningful connections with people facing psychosocial challenges.</p>
-                  </>
+                  <p>This documentary records the journey of the project Raízes e Ritmos – Interculturalidade de Moçambique, developed over four months at CAPS II and CAPS AD in Tatuí.</p>
                 )}
 
-                {isEPClamor && (
-                  <>
-                    <p>
-                      <strong>EP CLAMOR</strong> is an artistic performance that celebrates the fusion of Mozambican cultural heritage with modern musicality. 
-                    </p>
-                    <p>
-                      Through a powerful dialogue between percussion, piano, and vocals, the project aims to bridge the gap between tradition and innovation.
-                    </p>
-                  </>
-                )}
-
-                {isKuwalaBand && (
-                  <>
-                    <p>
-                      <strong>KUWALA BAND</strong> is a unique musical collective that promotes an artistic meeting between African and European sonorities. 
-                      The project specifically explores the intersection between Mozambican rhythms and Norwegian musical elements.
-                    </p>
-                    <p>
-                      The performance, such as the one held at Sesc Piracicaba, highlights the group's ability to create a harmonious and energetic soundscape 
-                      that transcends borders, celebrating diversity through instruments like the saxophone, piano, and traditional percussion.
-                    </p>
-                  </>
-                )}
-
-                {!isDocumentary && !isEPClamor && !isKuwalaBand && (
+                {!isWorkshops && !isDocumentary && (
                   <p>Detailed description for {title} is currently being developed.</p>
                 )}
               </div>
             </div>
 
-            {/* Sidebar de Informações Técnicas */}
+            {/* Sidebar */}
             <div className="md:col-span-4">
               <div className="bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-white/10 space-y-6">
                 <div>
                   <h3 className="text-primary text-[10px] font-bold tracking-widest uppercase mb-1">Year</h3>
-                  <p className="text-white font-medium">{isDocumentary ? "2025/2026" : "2024/2025"}</p>
+                  <p className="text-white font-medium">2024 - 2026</p>
                 </div>
                 <div>
-                  <h3 className="text-primary text-[10px] font-bold tracking-widest uppercase mb-1">Lead Artist</h3>
-                  <p className="text-white font-medium">Leusio Gil</p>
+                  <h3 className="text-primary text-[10px] font-bold tracking-widest uppercase mb-1">Type</h3>
+                  <p className="text-white font-medium">{isWorkshops ? "Educational Workshop" : "Cultural Project"}</p>
                 </div>
                 <div>
-                  <h3 className="text-primary text-[10px] font-bold tracking-widest uppercase mb-1">Location</h3>
-                  <p className="text-white font-medium">{isKuwalaBand ? "Sesc Piracicaba / International" : isDocumentary ? "Tatuí, Brasil" : "International Performance"}</p>
-                </div>
-                <div>
-                  <h3 className="text-primary text-[10px] font-bold tracking-widest uppercase mb-1">Themes</h3>
+                  <h3 className="text-primary text-[10px] font-bold tracking-widest uppercase mb-1">Focus</h3>
                   <p className="text-white/80 text-sm uppercase">
-                    {isKuwalaBand ? "Afro-Norwegian Fusion, World Music" : isDocumentary ? "Interculturality, Art-therapy" : "Marrapiko, Contemporary Fusion"}
+                    {isWorkshops ? "Percussion, Interaction, Heritage" : "Music & Art"}
                   </p>
                 </div>
               </div>
