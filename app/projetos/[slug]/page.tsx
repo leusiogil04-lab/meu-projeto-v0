@@ -80,8 +80,8 @@ export default async function ProjetoPage({
               <div className="space-y-6 leading-relaxed text-lg text-justify font-light">
                 {isCulturalBridge && (
                   <>
-                    <p><strong>A música como linguagem diplomática.</strong> O <em>Cultural Bridge Workshop</em> surge como um manifesto de interconectividade, onde o ritmo deixa de ser apenas som para se tornar um espaço de diálogo entre fronteiras. Sob a mentoria de Leusio Gil, o workshop explora como as tradições percussivas moçambicanas podem encontrar eco em diferentes contextos culturais.</p>
-                    <p>Mais do que uma aula de técnica, o projeto documenta o encontro humano. Através de instrumentos tradicionais e improvisação, participantes de diversas origens constroem uma ponte sonora que celebra a diversidade.</p>
+                    <p><strong>Review of the Mozambican Exchange in Brazil.</strong>The Cultural represents a pivotal chapter in the artistic residency of Leusio Gil during his cultural exchange in Brazil. In a significant collaboration with LBV (Legião da Boa Vontade) in the coastal city of Santos, this project transcended the traditional boundaries of music education, serving as a vibrant portal into the heart of Mozambican identity.</p>
+                    <p>The workshop was masterfully designed to introduce the richness of Mozambican heritage through a dual approach: the visceral power of traditional music and the communal joy of ancestral games. The footage captures Leusio’s unique pedagogical style, where "play" is a sophisticated tool for cultural transmission. By engaging participants in traditional Mozambican games, the workshop fostered an environment of spontaneous learning, allowing the rhythms of the Marrabenta to be felt through movement and collective interaction.</p>
                   </>
                 )}
                 {isRhythmRoots && (
