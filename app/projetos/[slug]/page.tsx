@@ -8,15 +8,14 @@ export default async function ProjetoPage({
 }: { 
   params: Promise<{ slug: string }> 
 }) {
-  // 1. Resolve e decodifica o slug para aceitar caracteres especiais
+  // 1. Resolve e decodifica o slug para evitar erros com caracteres como "&" (%26)
   const resolvedParams = await params;
-  const rawSlug = resolvedParams.slug;
-  const decodedSlug = decodeURIComponent(rawSlug).toLowerCase();
+  const decodedSlug = decodeURIComponent(resolvedParams.slug).toLowerCase();
   
-  // Versão limpa para lógica de busca
+  // Versão limpa para a lógica de busca de IDs
   const cleanSlug = decodedSlug.replace(/[^a-z0-9]/g, "");
 
-  // 2. Verificações de Projetos específicas
+  // 2. Verificações de Projetos
   const isCulturalBridge = cleanSlug.includes("culturalbridge");
   const isRhythmRoots = cleanSlug.includes("rhythm") || cleanSlug.includes("roots");
   const isDocumentary = cleanSlug.includes("documentary");
@@ -24,15 +23,14 @@ export default async function ProjetoPage({
   const isKuwalaBand = cleanSlug.includes("kuwalaband") || cleanSlug.includes("kuwala");
   const isMoveConcert = cleanSlug.includes("moveconcert") || cleanSlug.includes("move");
 
-  // Define se é um workshop (para usar o formato vertical)
   const isAnyWorkshop = isCulturalBridge || isRhythmRoots;
 
-  // 3. Mapeamento dos IDs do YouTube (Troca realizada aqui)
+  // 3. Mapeamento dos IDs do YouTube conforme sua última solicitação
   let youtubeId = "";
   if (isCulturalBridge) {
-    youtubeId = "xO4DV-Yp9NI"; 
+    youtubeId = "xO4DV-Yp9NI"; // Vídeo do Cultural Bridge
   } else if (isRhythmRoots) {
-    youtubeId = "NtTlNnURZoc"; // Recebeu o vídeo que estava no Move Concert
+    youtubeId = "NtTlNnURZoc"; // Vídeo trocado do Move Concert para cá
   } else if (isDocumentary) {
     youtubeId = "kUqtZH8k0Mk";
   } else if (isEPClamor) {
@@ -40,10 +38,10 @@ export default async function ProjetoPage({
   } else if (isKuwalaBand) {
     youtubeId = "NRo4VMlkpEQ";
   } else if (isMoveConcert) {
-    youtubeId = "Qscqy-i9YOM"; // Recebeu o vídeo que estava no Rhythm Roots
+    youtubeId = "Qscqy-i9YOM"; // Vídeo que estava no Rhythm Roots
   }
 
-  // Título de exibição
+  // Título de exibição limpo
   const displayTitle = isCulturalBridge 
     ? "CULTURAL BRIDGE WORKSHOP" 
     : isRhythmRoots 
@@ -51,7 +49,7 @@ export default async function ProjetoPage({
     : decodedSlug.replace(/-/g, " ").toUpperCase();
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#043E43]">
+    <div className="flex min-h-screen flex-col bg-[#043E43] text-white">
       <Navigation />
       
       <main className="flex-grow pt-32 pb-20">
@@ -73,14 +71,14 @@ export default async function ProjetoPage({
             </h1>
           </header>
 
-          {/* ÁREA DO VÍDEO */}
+          {/* ÁREA DO VÍDEO - CORRIGIDA PARA APARECER NA TELA */}
           <div className="relative w-full mb-16 flex justify-center">
             {youtubeId ? (
               <div 
                 className={`relative overflow-hidden rounded-2xl bg-black shadow-2xl border border-white/10 ${
                   isAnyWorkshop 
-                  ? "w-[320px] h-[570px]" // FORMATO VERTICAL PARA WORKSHOPS
-                  : "aspect-video w-full"  // FORMATO HORIZONTAL PARA O RESTO
+                  ? "w-[320px] h-[570px]" // Garante altura para vídeos verticais
+                  : "aspect-video w-full" 
                 }`}
               >
                 <iframe
@@ -103,14 +101,10 @@ export default async function ProjetoPage({
               <h2 className="text-2xl font-serif text-white uppercase tracking-wider">Overview</h2>
               <div className="space-y-4 leading-relaxed text-lg text-justify">
                 {isCulturalBridge && (
-                  <p>
-                    The <strong>Cultural Bridge Workshop</strong> focuses on connecting different musical backgrounds through percussive exchange, building a rhythmic bridge between traditions.
-                  </p>
+                  <p>The <strong>Cultural Bridge Workshop</strong> focuses on connecting different musical backgrounds through percussive exchange.</p>
                 )}
                 {isRhythmRoots && (
-                  <p>
-                    The <strong>Rhythm and Roots Workshops</strong> are practical sessions designed to immerse participants in the vibrant percussive traditions of Mozambique.
-                  </p>
+                  <p>The <strong>Rhythm and Roots Workshops</strong> are practical sessions designed to immerse participants in the vibrant percussive traditions of Mozambique.</p>
                 )}
                 {isDocumentary && <p>A documentary project exploring social sustainability through music.</p>}
                 {isEPClamor && <p>A performance piece fusing traditional rhythms with modern expression.</p>}
