@@ -15,14 +15,14 @@ export default async function ProjetoPage({
   const isDocumentary = slug === "documentary";
   const isEPClamor = slug === "ep-clamor";
   const isKuwalaBand = slug === "kuwala-band";
-  const isWorkshops = slug === "rhythm-and-roots-workshops";
+  const isWorkshop = slug === "rhythm-and-roots-workshop";
 
   // Definição de IDs do YouTube
   let youtubeId = "";
   if (isDocumentary) youtubeId = "kUqtZH8k0Mk";
   if (isEPClamor) youtubeId = "ivorxGT_JH8";
   if (isKuwalaBand) youtubeId = "NRo4VMlkpEQ";
-  if (isWorkshops) youtubeId = "NtTlNnURZoc"; // ID do vídeo Shorts
+  if (isWorkshop) youtubeId = "NtTlNnURZoc"; // ID do vídeo Shorts
 
   return (
     <div className="flex min-h-screen flex-col bg-[#043E43]">
@@ -40,14 +40,14 @@ export default async function ProjetoPage({
 
           <header className="text-center mb-16">
             <span className="text-primary text-xs font-bold tracking-[0.3em] uppercase">
-              {isWorkshops ? "Education & Community" : isDocumentary ? "Film & Research" : "Performance & Music"}
+              {isWorkshop ? "Education & Community" : isDocumentary ? "Film & Research" : "Performance & Music"}
             </span>
             <h1 className="mt-4 font-serif text-4xl md:text-6xl text-white leading-tight uppercase">
-              {isWorkshops ? "Rhythm and Roots Workshops" : isDocumentary ? "DOCUMENTARY: Rhythm & Roots" : title}
+              {isWorkshop ? "Rhythm and Roots Workshops" : isDocumentary ? "DOCUMENTARY: Rhythm & Roots" : title}
             </h1>
             
             <p className="mt-6 text-zinc-300 max-w-2xl mx-auto italic text-lg">
-              {isWorkshops && "Sharing Mozambican heritage through hands-on rhythmic experiences."}
+              {isWorkshop && "Sharing Mozambican heritage through hands-on rhythmic experiences."}
               {isDocumentary && "A project that educates, welcomes and cooperates for social sustainability."}
             </p>
           </header>
@@ -55,7 +55,7 @@ export default async function ProjetoPage({
           {/* Seção de Mídia - Ajustada para Shorts no caso dos Workshops */}
           <div className="relative w-full overflow-hidden rounded-2xl bg-black shadow-2xl mb-16">
             {youtubeId ? (
-              <div className={isWorkshops ? "aspect-[9/16] max-w-[350px] mx-auto" : "aspect-video w-full"}>
+              <div className={isWorkshop ? "aspect-[9/16] max-w-[350px] mx-auto" : "aspect-video w-full"}>
                 <iframe
                   src={`https://www.youtube.com/embed/${youtubeId}`}
                   title="YouTube video player"
@@ -76,7 +76,7 @@ export default async function ProjetoPage({
             <div className="md:col-span-8 space-y-8 text-zinc-200">
               <h2 className="text-2xl font-serif text-white uppercase tracking-wider">Overview</h2>
               <div className="space-y-4 leading-relaxed">
-                {isWorkshops && (
+                {isWorkshop && (
                   <>
                     <p>
                       The <strong>Rhythm and Roots Workshops</strong> are practical sessions designed to immerse participants in the vibrant percussive traditions of Mozambique.
@@ -91,7 +91,7 @@ export default async function ProjetoPage({
                   <p>This documentary records the journey of the project Raízes e Ritmos – Interculturalidade de Moçambique, developed over four months at CAPS II and CAPS AD in Tatuí.</p>
                 )}
 
-                {!isWorkshops && !isDocumentary && (
+                {!isWorkshop && !isDocumentary && (
                   <p>Detailed description for {title} is currently being developed.</p>
                 )}
               </div>
@@ -106,12 +106,12 @@ export default async function ProjetoPage({
                 </div>
                 <div>
                   <h3 className="text-primary text-[10px] font-bold tracking-widest uppercase mb-1">Type</h3>
-                  <p className="text-white font-medium">{isWorkshops ? "Educational Workshop" : "Cultural Project"}</p>
+                  <p className="text-white font-medium">{isWorkshop ? "Educational Workshop" : "Cultural Project"}</p>
                 </div>
                 <div>
                   <h3 className="text-primary text-[10px] font-bold tracking-widest uppercase mb-1">Focus</h3>
                   <p className="text-white/80 text-sm uppercase">
-                    {isWorkshops ? "Percussion, Interaction, Heritage" : "Music & Art"}
+                    {isWorkshop ? "Percussion, Interaction, Heritage" : "Music & Art"}
                   </p>
                 </div>
               </div>
