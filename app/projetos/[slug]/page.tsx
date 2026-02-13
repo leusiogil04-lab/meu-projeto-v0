@@ -27,12 +27,12 @@ export default async function ProjetoPage({
   // Define se é um workshop (para usar o formato vertical)
   const isAnyWorkshop = isCulturalBridge || isRhythmRoots;
 
-  // 3. Mapeamento dos IDs do YouTube
+  // 3. Mapeamento dos IDs do YouTube (Troca realizada aqui)
   let youtubeId = "";
   if (isCulturalBridge) {
-    youtubeId = "xO4DV-Yp9NI"; // O VÍDEO NOVO QUE VOCÊ PEDIU
+    youtubeId = "xO4DV-Yp9NI"; 
   } else if (isRhythmRoots) {
-    youtubeId = "Qscqy-i9YOM"; 
+    youtubeId = "NtTlNnURZoc"; // Recebeu o vídeo que estava no Move Concert
   } else if (isDocumentary) {
     youtubeId = "kUqtZH8k0Mk";
   } else if (isEPClamor) {
@@ -40,7 +40,7 @@ export default async function ProjetoPage({
   } else if (isKuwalaBand) {
     youtubeId = "NRo4VMlkpEQ";
   } else if (isMoveConcert) {
-    youtubeId = "NtTlNnURZoc";
+    youtubeId = "Qscqy-i9YOM"; // Recebeu o vídeo que estava no Rhythm Roots
   }
 
   // Título de exibição
