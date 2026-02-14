@@ -3,25 +3,29 @@
 import { useEffect, useRef, useState } from "react"
 import { Mic2, GraduationCap } from "lucide-react"
 import { cn } from "@/lib/utils"
-
-const services = [
-  {
-    icon: Mic2,
-    title: "Performer",
-    description:
-      "Live performances that captivate and inspire. From intimate venues to grand stages, each show is a unique experience of rhythm, melody, and storytelling.",
-  },
-  {
-    icon: GraduationCap,
-    title: "Educator",
-    description:
-      "Workshops and masterclasses that explore the intersection of culture and music. Interactive sessions designed for students, professionals, and curious minds.",
-  },
-]
+// Importamos o hook de idioma
+import { useLanguage } from "../app/LanguageContext"
 
 export function ServicesSection() {
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
+  
+  // Ativamos as traduções
+  const { t } = useLanguage()
+
+  // Mapeamos os serviços usando as traduções do contexto
+  const services = [
+    {
+      icon: Mic2,
+      title: t.services.s1_title,
+      description: t.services.s1_desc,
+    },
+    {
+      icon: GraduationCap,
+      title: t.services.s2_title,
+      description: t.services.s2_desc,
+    },
+  ]
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -58,15 +62,17 @@ export function ServicesSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}
         >
+          {/* Tradução: Badge "What I Do" */}
           <span className="text-primary text-sm font-medium tracking-widest uppercase">
-            What I Do
+            {t.services.badge}
           </span>
+          {/* Tradução: Título "Creative Services" */}
           <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-foreground leading-tight">
-            Creative Services
+            {t.services.title}
           </h2>
+          {/* Tradução: Descrição geral */}
           <p className="mt-6 text-muted-foreground leading-relaxed">
-            Bringing passion and expertise to every project, from live
-            performances to educational workshops.
+            {t.services.desc}
           </p>
         </div>
 

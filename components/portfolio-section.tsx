@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
+// Importação do hook de idioma
+import { useLanguage } from "../app/LanguageContext"
 
 const portfolioItems = [
   {
@@ -47,6 +49,9 @@ const portfolioItems = [
 export function PortfolioSection() {
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
+  
+  // Ativando as traduções
+  const { t } = useLanguage()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -78,27 +83,27 @@ export function PortfolioSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}
         >
-          {/* Alterado para text-white para combinar com o resto */}
+          {/* Tradução: Badge Portfolio */}
           <span className="text-white text-sm font-medium tracking-widest uppercase opacity-70">
-            Portfolio
+            {t.portfolio.badge}
           </span>
+          {/* Tradução: Título Selected Works */}
           <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-white leading-tight">
-            Selected Works
+            {t.portfolio.title}
           </h2>
+          {/* Tradução: Descrição do portfólio */}
           <p className="mt-6 text-white/70 leading-relaxed">
-            A curated collection of performances, compositions, and educational 
-            projects.
+            {t.portfolio.desc}
           </p>
         </div>
 
         <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {portfolioItems.map((item, index) => {
-            // Lógica de URL melhorada: transforma "Rhythm & Roots" em "rhythm-roots"
             const projectSlug = item.title
               .toLowerCase()
-              .replace(/&/g, "") // Remove o &
-              .replace(/\s+/g, "-") // Transforma espaços em hífens
-              .replace(/-+/g, "-") // Evita hífens duplos
+              .replace(/&/g, "")
+              .replace(/\s+/g, "-")
+              .replace(/-+/g, "-")
 
             return (
               <Link 
@@ -120,15 +125,15 @@ export function PortfolioSection() {
                 
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/70 transition-colors duration-300 flex items-center justify-center">
                   <div className="text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-4">
-                    {/* Texto do card em branco */}
                     <span className="text-white text-xs font-medium tracking-widest uppercase opacity-80">
                       {item.category}
                     </span>
                     <h3 className="mt-2 text-white font-serif text-lg md:text-xl font-medium">
                       {item.title}
                     </h3>
+                    {/* Tradução: Botão View Project */}
                     <div className="mt-4 inline-block px-4 py-2 border border-white text-white text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-colors">
-                      View Project
+                      {t.portfolio.view}
                     </div>
                   </div>
                 </div>

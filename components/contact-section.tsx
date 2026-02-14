@@ -1,16 +1,22 @@
 "use client"
 
 import React, { useEffect, useRef, useState } from "react"
-import { Instagram, Youtube, Mail, Linkedin, Loader2 } from "lucide-react" // Adicionei Loader2
+import { Instagram, Youtube, Mail, Linkedin, Loader2 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+// Importamos o hook de idioma
+import { useLanguage } from "../app/LanguageContext"
 
 export function ContactSection() {
   const [isVisible, setIsVisible] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false) // Estado essencial
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
+  
+  // Ativamos as traduções
+  const { t } = useLanguage()
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -34,7 +40,6 @@ export function ContactSection() {
     return () => observer.disconnect()
   }, [])
 
-  // PARTE ESSENCIAL: Lógica do Resend
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
@@ -47,10 +52,10 @@ export function ContactSection() {
       })
 
       if (response.ok) {
-        alert("Mensagem enviada!")
+        alert(t.lang === 'pt' ? "Mensagem enviada!" : "Message sent!")
         setFormData({ name: "", email: "", message: "" })
       } else {
-        alert("Erro ao enviar.")
+        alert(t.lang === 'pt' ? "Erro ao enviar." : "Error sending.")
       }
     } catch (error) {
       console.error(error)
@@ -73,14 +78,13 @@ export function ContactSection() {
           )}
         >
           <span className="text-primary text-sm font-medium tracking-widest uppercase">
-            Contact
+            {t.contact.badge}
           </span>
           <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-foreground leading-tight">
-            {"Let's Connect"}
+            {t.contact.title}
           </h2>
           <p className="mt-6 text-muted-foreground leading-relaxed">
-            Interested in collaborating, booking a performance, or organizing a 
-            workshop? I would love to hear from you.
+            {t.contact.desc}
           </p>
         </div>
 
@@ -94,12 +98,12 @@ export function ContactSection() {
           <div className="grid sm:grid-cols-2 gap-6">
             <div>
               <label htmlFor="name" className="sr-only">
-                Your Name
+                {t.contact.placeholderName}
               </label>
               <Input
                 id="name"
                 type="text"
-                placeholder="Your Name"
+                placeholder={t.contact.placeholderName}
                 value={formData.name}
                 onChange={(e) =>
                   setFormData({ ...formData, name: e.target.value })
@@ -110,12 +114,12 @@ export function ContactSection() {
             </div>
             <div>
               <label htmlFor="email" className="sr-only">
-                Your Email
+                {t.contact.placeholderEmail}
               </label>
               <Input
                 id="email"
                 type="email"
-                placeholder="Your Email"
+                placeholder={t.contact.placeholderEmail}
                 value={formData.email}
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
@@ -127,11 +131,11 @@ export function ContactSection() {
           </div>
           <div>
             <label htmlFor="message" className="sr-only">
-              Your Message
+              {t.contact.placeholderMessage}
             </label>
             <Textarea
               id="message"
-              placeholder="Your Message"
+              placeholder={t.contact.placeholderMessage}
               value={formData.message}
               onChange={(e) =>
                 setFormData({ ...formData, message: e.target.value })
@@ -142,13 +146,16 @@ export function ContactSection() {
             />
           </div>
           <div className="text-center">
-            {/* BOTÃO COM LOADING */}
             <Button
               type="submit"
               disabled={isSubmitting}
               className="px-8 py-6 h-auto bg-primary text-primary-foreground text-sm font-medium tracking-widest uppercase rounded-sm hover:bg-primary/90 transition-colors duration-200"
             >
-              {isSubmitting ? <Loader2 className="animate-spin h-4 w-4" /> : "Send Message"}
+              {isSubmitting ? (
+                <Loader2 className="animate-spin h-4 w-4" />
+              ) : (
+                t.contact.send
+              )}
             </Button>
           </div>
         </form>

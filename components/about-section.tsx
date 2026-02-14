@@ -3,10 +3,15 @@
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
+// Importamos o hook de idioma
+import { useLanguage } from "../app/LanguageContext"
 
 export function AboutSection() {
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
+  
+  // Ativamos as traduções
+  const { t } = useLanguage()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -60,21 +65,24 @@ export function AboutSection() {
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"
             )}
           >
+            {/* Tradução: About */}
             <span className="text-primary text-sm font-medium tracking-widest uppercase">
-              About
+              {t.about.badge}
             </span>
+            {/* Tradução: Biography */}
             <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-foreground leading-tight">
-              Biography
+              {t.about.title}
             </h2>
             <div className="mt-8 space-y-6 text-muted-foreground leading-relaxed">
+              {/* Tradução: Parágrafos da Bio */}
               <p>
-                Mozambican artist, pianist, vocalist, composer and cultural educator, Leusio Gil is emerging as a distinctive voice connecting African roots, contemporary sounds and intercultural dialigue.
+                {t.about.p1}
               </p>
               <p>
-                Born in Maputo, Mozambique, Leusio builds bridges between music, education and identity. His artistic path moves fluidly between Marrabenta, jazz, soul, afro-influenced rhythms and modern songwriting, shaped by lived experiences across cultures.
+                {t.about.p2}
               </p>
               <p>
-                As an independent artist, Leusio is also an educator and cultural facilitator, developing projects that unite music, language and intercultural learning. His expressive performances, musical versatility and authentic presence continue to resonate with diverse audiences, positioning him as a rising voice in the contemporary African and diasporic music scene.
+                {t.about.p3}
               </p>
             </div>
           </div>

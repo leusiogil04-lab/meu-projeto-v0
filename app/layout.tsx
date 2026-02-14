@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+// Importamos o Provider que você criou (ajuste o caminho se necessário)
+import { LanguageProvider } from "./LanguageContext"; 
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,7 +35,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#043E43] text-white`}
       >
-        {children}
+        {/* O LanguageProvider deve envolver o children para que todos os componentes acessem as traduções */}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

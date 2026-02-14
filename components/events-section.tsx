@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { MapPin, Calendar } from "lucide-react"
 import { cn } from "@/lib/utils"
+// Importamos o hook de idioma
+import { useLanguage } from "../app/LanguageContext"
 
 const events = [
   {
@@ -18,6 +20,9 @@ const events = [
 export function EventsSection() {
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
+  
+  // Ativamos as traduções
+  const { t } = useLanguage()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -40,15 +45,11 @@ export function EventsSection() {
     <section
       id="events"
       ref={sectionRef}
-      // MUDANÇA: Adicionado relative, overflow-hidden e um gradiente sutil
       className="relative py-24 md:py-32 bg-background overflow-hidden"
     >
       {/* ELEMENTOS DE FUNDO MINIMALISTAS */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Gradiente Radial para foco central */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(var(--primary-rgb),0.03),transparent_70%)]" />
-        
-        {/* Linhas de Grade (Grid) muito suaves */}
         <div className="absolute inset-0 opacity-[0.03] [mask-image:radial-gradient(ellipse_at_center,black,transparent)] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:40px_40px]" />
       </div>
 
@@ -59,14 +60,17 @@ export function EventsSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}
         >
+          {/* Tradução: Badge "Events" */}
           <span className="text-primary text-sm font-medium tracking-widest uppercase">
-            Events
+            {t.events.badge}
           </span>
+          {/* Tradução: Título principal */}
           <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-foreground leading-tight">
-            Upcoming Experiences
+            {t.events.title}
           </h2>
+          {/* Tradução: Descrição */}
           <p className="mt-6 text-muted-foreground leading-relaxed">
-            Join me at upcoming performances, workshops, and festivals around the world.
+            {t.events.desc}
           </p>
         </div>
 
@@ -75,7 +79,6 @@ export function EventsSection() {
             <div
               key={event.id}
               className={cn(
-                // MUDANÇA: Adicionado hover:bg-muted/30 para um efeito interativo leve
                 "group py-6 border-b border-border first:border-t transition-all duration-1000 ease-out hover:bg-primary/[0.01] px-4 -mx-4 rounded-sm",
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
               )}
@@ -111,11 +114,12 @@ export function EventsSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}
         >
+          {/* Tradução: Botão CTA "Book a Show" */}
           <Link
             href="#contact"
             className="inline-flex items-center gap-2 px-8 py-4 border border-primary text-primary text-sm font-medium tracking-widest uppercase rounded-sm hover:bg-primary hover:text-primary-foreground transition-colors duration-200 bg-transparent"
           >
-            Book a Show
+            {t.events.cta}
           </Link>
         </div>
       </div>
