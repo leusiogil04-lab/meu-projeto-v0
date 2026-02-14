@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
-// Importação do hook de idioma
+// Importação do hook de idioma - Caminho corrigido para sua estrutura
 import { useLanguage } from "../app/LanguageContext"
 
 const portfolioItems = [
@@ -83,15 +83,12 @@ export function PortfolioSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}
         >
-          {/* Tradução: Badge Portfolio */}
           <span className="text-white text-sm font-medium tracking-widest uppercase opacity-70">
             {t.portfolio.badge}
           </span>
-          {/* Tradução: Título Selected Works */}
           <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-white leading-tight">
             {t.portfolio.title}
           </h2>
-          {/* Tradução: Descrição do portfólio */}
           <p className="mt-6 text-white/70 leading-relaxed">
             {t.portfolio.desc}
           </p>
@@ -123,15 +120,19 @@ export function PortfolioSection() {
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/70 transition-colors duration-300 flex items-center justify-center">
-                  <div className="text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-4">
+                {/* CORREÇÃO MOBILE: 
+                  - No mobile (base), o fundo escuro tem 50% de opacidade e o conteúdo é visível (opacity-100).
+                  - No desktop (md:), o fundo começa transparente e o conteúdo invisível, aparecendo só no hover.
+                */}
+                <div className="absolute inset-0 bg-black/50 md:bg-black/0 md:group-hover:bg-black/70 transition-colors duration-300 flex items-center justify-center">
+                  <div className="text-center px-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
                     <span className="text-white text-xs font-medium tracking-widest uppercase opacity-80">
                       {item.category}
                     </span>
                     <h3 className="mt-2 text-white font-serif text-lg md:text-xl font-medium">
                       {item.title}
                     </h3>
-                    {/* Tradução: Botão View Project */}
+                    
                     <div className="mt-4 inline-block px-4 py-2 border border-white text-white text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-colors">
                       {t.portfolio.view}
                     </div>
