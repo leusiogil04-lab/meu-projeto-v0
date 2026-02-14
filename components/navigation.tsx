@@ -31,9 +31,9 @@ export function Navigation() {
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        // Adicionado bg-black/80 e blur para visibilidade total ao rolar
+        // Mudado de bg-black/80 para bg-black puro para o efeito Dark total
         scrolled 
-          ? "bg-black/80 backdrop-blur-md shadow-lg border-b border-white/10 h-16" 
+          ? "bg-black shadow-2xl border-b border-white/10 h-16" 
           : "bg-transparent h-20"
       )}
     >
@@ -52,8 +52,7 @@ export function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                // Mudado para text-zinc-100 para alto contraste
-                className="text-xs font-medium text-zinc-100 hover:text-white transition-colors duration-200 tracking-widest uppercase"
+                className="text-xs font-medium text-white/90 hover:text-white transition-colors duration-200 tracking-widest uppercase"
               >
                 {link.label}
               </Link>
@@ -71,19 +70,19 @@ export function Navigation() {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation - Também ajustado para preto sólido */}
         <div
           className={cn(
-            "md:hidden overflow-hidden transition-all duration-300 bg-black/95 rounded-b-2xl",
+            "md:hidden overflow-hidden transition-all duration-300 bg-black rounded-b-2xl shadow-2xl",
             isOpen ? "max-h-96 pb-6 px-4" : "max-h-0"
           )}
         >
-          <div className="flex flex-col gap-4 pt-4">
+          <div className="flex flex-col gap-4 pt-4 text-center">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-zinc-100 hover:text-white py-2 border-b border-white/5 uppercase tracking-widest"
+                className="text-sm font-medium text-white hover:text-primary py-3 border-b border-white/5 uppercase tracking-widest"
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
