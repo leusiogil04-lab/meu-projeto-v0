@@ -78,7 +78,6 @@ export function PortfolioSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}
         >
-          {/* Alterado para text-white para combinar com o resto */}
           <span className="text-white text-sm font-medium tracking-widest uppercase opacity-70">
             Portfolio
           </span>
@@ -93,12 +92,11 @@ export function PortfolioSection() {
 
         <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {portfolioItems.map((item, index) => {
-            // Lógica de URL melhorada: transforma "Rhythm & Roots" em "rhythm-roots"
             const projectSlug = item.title
               .toLowerCase()
-              .replace(/&/g, "") // Remove o &
-              .replace(/\s+/g, "-") // Transforma espaços em hífens
-              .replace(/-+/g, "-") // Evita hífens duplos
+              .replace(/&/g, "")
+              .replace(/\s+/g, "-")
+              .replace(/-+/g, "-")
 
             return (
               <Link 
@@ -118,9 +116,10 @@ export function PortfolioSection() {
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/70 transition-colors duration-300 flex items-center justify-center">
-                  <div className="text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-4">
-                    {/* Texto do card em branco */}
+                {/* Overlay ajustado: bg-black/40 visível no mobile, transparente no desktop até o hover */}
+                <div className="absolute inset-0 bg-black/40 md:bg-black/0 md:group-hover:bg-black/70 transition-colors duration-300 flex items-center justify-center">
+                  {/* Conteúdo ajustado: opacity-100 no mobile, opacity-0 no desktop até o hover */}
+                  <div className="text-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 px-4">
                     <span className="text-white text-xs font-medium tracking-widest uppercase opacity-80">
                       {item.category}
                     </span>
