@@ -113,8 +113,9 @@ export default async function ProjetoPage({
                 )}
                 {isMoveConcert && (
                    <>
-                    <p><strong>A explosão da colaboração criativa.</strong> O <em>MOVE CONCERT</em> não é apenas uma apresentação, é o clímax de um intercâmbio artístico internacional. O concerto exibe a energia crua de artistas que se movem em sintonia, desafiando barreiras linguísticas através da performance.</p>
-                    <p>A narrativa do show é construída sobre a ideia de "movimento" — de corpos, de ideias e de culturas — celebrando a liberdade criativa coletiva com uma estética visual potente.</p>
+                    <p><strong>Leusio Gil at the Procópio Ferreira Theatre.</strong> This video captures a magnificent performance held at the renowned Procópio Ferreira Theatre in Tatuí, São Paulo—Brazil’s "Capital of Music". On stage, musician Leusio Gil presents a showcase centred on the cultural richness of Mozambique, bringing the energy and heritage of African sounds to the audience.</p>
+                    <p>The performance focuses on traditional rhythms, with a strong emphasis on Marrabenta, Mozambique's most iconic music and dance genre, known for its vibrant and danceable cadence.</p>
+                    <p>Alongside original compositions, Leusio performs interpretations of great Mozambican artists, serving as a cultural bridge between Africa and Brazil. A key highlight is the rendition of the song "Rosa" by Albino Mbie.</p>
                    </>
                 )}
               </div>
