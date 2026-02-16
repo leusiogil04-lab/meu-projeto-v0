@@ -13,24 +13,24 @@ export default async function ProjetoPage({
   const decodedSlug = decodeURIComponent(rawSlug).toLowerCase();
   const cleanSlug = decodedSlug.replace(/[^a-z0-9]/g, "");
 
-  const isCulturalBridge = cleanSlug.includes("culturalbridge");
+  const isCultural = cleanSlug.includes("cultural");
   const isRhythmRoots = cleanSlug.includes("rhythm") || cleanSlug.includes("roots");
   const isDocumentary = cleanSlug.includes("documentary");
   const isEPClamor = cleanSlug.includes("epclamor") || cleanSlug.includes("clamor");
   const isKuwalaBand = cleanSlug.includes("kuwalaband") || cleanSlug.includes("kuwala");
   const isMoveConcert = cleanSlug.includes("moveconcert") || cleanSlug.includes("move");
 
-  const isAnyWorkshop = isCulturalBridge || isRhythmRoots;
+  const isAnyWorkshop = isCultural || isRhythmRoots;
 
   let youtubeId = "";
-  if (isCulturalBridge) youtubeId = "xO4DV-Yp9NI"; 
+  if (isCultural) youtubeId = "xO4DV-Yp9NI"; 
   else if (isRhythmRoots) youtubeId = "NtTlNnURZoc"; 
   else if (isDocumentary) youtubeId = "kUqtZH8k0Mk";
   else if (isEPClamor) youtubeId = "ivorxGT_JH8";
   else if (isKuwalaBand) youtubeId = "NRo4VMlkpEQ";
   else if (isMoveConcert) youtubeId = "Qscqy-i9YOM";
 
-  const displayTitle = isCulturalBridge 
+  const displayTitle = isCultural 
     ? "CULTURAL BRIDGE WORKSHOP" 
     : isRhythmRoots 
     ? "RHYTHM AND ROOTS WORKSHOPS" 
@@ -78,7 +78,7 @@ export default async function ProjetoPage({
             <div className="md:col-span-8 space-y-8 text-zinc-200">
               <h2 className="text-2xl font-serif text-white uppercase tracking-wider">Overview</h2>
               <div className="space-y-6 leading-relaxed text-lg text-justify font-light">
-                {isCulturalBridge && (
+                {isCultural && (
                   <>
                     <p><strong>Review of the Mozambican Exchange in Brazil.</strong>The Cultural represents a pivotal chapter in the artistic residency of Leusio Gil during his cultural exchange in Brazil. In a significant collaboration with LBV (Legião da Boa Vontade) in the coastal city of Santos, this project transcended the traditional boundaries of music education, serving as a vibrant portal into the heart of Mozambican identity.</p>
                     <p>The workshop was masterfully designed to introduce the richness of Mozambican heritage through a dual approach: the visceral power of traditional music and the communal joy of ancestral games. The footage captures Leusio’s unique pedagogical style, where "play" is a sophisticated tool for cultural transmission. By engaging participants in traditional Mozambican games, the workshop fostered an environment of spontaneous learning, allowing the rhythms of the Marrabenta to be felt through movement and collective interaction.</p>
