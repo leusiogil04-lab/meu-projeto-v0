@@ -4,8 +4,6 @@ import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
-// Importação do hook de idioma - Caminho corrigido para sua estrutura
-import { useLanguage } from "../app/LanguageContext"
 
 const portfolioItems = [
   {
@@ -40,7 +38,7 @@ const portfolioItems = [
   },
   {
     id: 6,
-    title: "Rhythm & Roots",
+    title: "Rhythms & Roots",
     category: "Education",
     image: "/imagens/workshopraizes.jpg",
   },
@@ -49,9 +47,6 @@ const portfolioItems = [
 export function PortfolioSection() {
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
-  
-  // Ativando as traduções
-  const { t } = useLanguage()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -84,13 +79,13 @@ export function PortfolioSection() {
           )}
         >
           <span className="text-white text-sm font-medium tracking-widest uppercase opacity-70">
-            {t.portfolio.badge}
+            Selected Works
           </span>
           <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-white leading-tight">
-            {t.portfolio.title}
+           Portfolio
           </h2>
           <p className="mt-6 text-white/70 leading-relaxed">
-            {t.portfolio.desc}
+           Explore the projects that showcase my work.
           </p>
         </div>
 
@@ -120,10 +115,6 @@ export function PortfolioSection() {
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 
-                {/* CORREÇÃO MOBILE: 
-                  - No mobile (base), o fundo escuro tem 50% de opacidade e o conteúdo é visível (opacity-100).
-                  - No desktop (md:), o fundo começa transparente e o conteúdo invisível, aparecendo só no hover.
-                */}
                 <div className="absolute inset-0 bg-black/50 md:bg-black/0 md:group-hover:bg-black/70 transition-colors duration-300 flex items-center justify-center">
                   <div className="text-center px-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
                     <span className="text-white text-xs font-medium tracking-widest uppercase opacity-80">
@@ -134,7 +125,7 @@ export function PortfolioSection() {
                     </h3>
                     
                     <div className="mt-4 inline-block px-4 py-2 border border-white text-white text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-colors">
-                      {t.portfolio.view}
+                      View Project
                     </div>
                   </div>
                 </div>

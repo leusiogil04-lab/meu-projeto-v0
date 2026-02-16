@@ -7,33 +7,30 @@ import { Footer } from "@/components/footer"
 import { FileText, Download, Newspaper, Radio, Clock } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { useLanguage } from "../LanguageContext"
 
 export default function ImprensaPage() {
   const [isVisible, setIsVisible] = useState(false)
-  const { t } = useLanguage()
 
   useEffect(() => {
     setIsVisible(true)
   }, [])
 
-  // Mapeamento dos itens usando IDs fixos para a KEY do React
   const pressItems = [
     {
       id: "epk",
       icon: FileText,
-      title: t.press.epkTitle,
-      description: t.press.epkDesc,
-      action: t.press.epkCTA,
+      title: "Electronic Press Kit",
+      description: "Complete professional dossier including biography, high-res photos, and technical rider.",
+      action: "Download EPK",
       href: "/documentos/leusio-electronic press.pdf", 
       isDownload: true,
     },
     {
       id: "onesheet",
       icon: Download,
-      title: t.press.oneSheetTitle,
-      description: t.press.oneSheetDesc,
-      action: t.press.oneSheetCTA,
+      title: "One Sheet",
+      description: "Quick reference guide for promoters, venues, and media outlets.",
+      action: "Download PDF",
       href: "/documentos/onesheet.pdf",
       downloadName: "onesheet.pdf",
       isDownload: true,
@@ -41,27 +38,27 @@ export default function ImprensaPage() {
     {
       id: "releases",
       icon: Newspaper,
-      title: t.press.releasesTitle,
-      description: t.press.releasesDesc,
-      action: t.press.releasesCTA,
+      title: "Press Releases",
+      description: "Latest official announcements and project launches.",
+      action: "Read Releases",
       href: "#",
       isDownload: false,
     },
     {
       id: "media",
       icon: Radio,
-      title: t.press.mediaTitle,
-      description: t.press.mediaDesc,
-      action: t.press.mediaCTA,
+      title: "Media Appearances",
+      description: "Archive of interviews, radio sessions, and television features.",
+      action: "View Archive",
       href: "#",
       isDownload: false,
     },
     {
       id: "news",
       icon: Clock,
-      title: t.press.newsTitle,
-      description: t.press.newsDesc,
-      action: t.press.newsCTA,
+      title: "Latest News",
+      description: "Recent mentions and reviews from the global press.",
+      action: "View News",
       href: "#",
       isDownload: false,
     },
@@ -72,7 +69,7 @@ export default function ImprensaPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 md:pt-40 md:pb-24 bg-[#000000] dark:bg-slate-900/50">
+      <section className="pt-32 pb-16 md:pt-40 md:pb-24 bg-[#000000]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div
             className={cn(
@@ -80,14 +77,14 @@ export default function ImprensaPage() {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             )}
           >
-            <span className="text-blue-600 dark:text-blue-400 text-sm font-medium tracking-widest uppercase">
-              {t.press.badge}
+            <span className="text-primary text-sm font-medium tracking-widest uppercase">
+              Press Room
             </span>
             <h1 className="mt-4 font-serif text-4xl md:text-5xl lg:text-6xl font-medium text-white leading-tight">
-              {t.press.title}
+              Media Resources
             </h1>
-            <p className="mt-6 text-lg text-blue-50/80 leading-relaxed">
-              {t.press.subtitle}
+            <p className="mt-6 text-lg text-white/70 leading-relaxed">
+              Find official documents, professional photos, and press materials for Leusio Gil.
             </p>
           </div>
         </div>
@@ -99,7 +96,7 @@ export default function ImprensaPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {pressItems.map((item, index) => (
               <div
-                key={item.id} // CORREÇÃO DO ERRO DE KEY
+                key={item.id}
                 className={cn(
                   "group p-8 bg-card border border-border hover:border-primary/30 transition-all duration-500",
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"

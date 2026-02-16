@@ -2,25 +2,21 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Menu, X, Globe } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
-// Certifique-se de que o caminho abaixo está correto conforme sua estrutura de pastas
-import { useLanguage } from "../app/LanguageContext"
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   
-  const { lang, t, toggleLang } = useLanguage();
-
   const navLinks = [
-    { href: "/", label: t.nav.home },
-    { href: "/#about", label: t.nav.about },
-    { href: "/#services", label: t.nav.services },
-    { href: "/press", label: t.nav.press }, 
-    { href: "/media", label: t.nav.media }, 
-    { href: "/#events", label: t.nav.events },
-    { href: "/#contact", label: t.nav.contact },
+    { href: "/", label: "Home" },
+    { href: "/#about", label: "About" },
+    { href: "/#services", label: "Services" },
+    { href: "/press", label: "Press" }, 
+    { href: "/media", label: "Media" }, 
+    { href: "/#events", label: "Events" },
+    { href: "/#contact", label: "Contact" },
   ]
 
   useEffect(() => {
@@ -28,6 +24,14 @@ export function Navigation() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  // Função para disparar a tradução através dos botões personalizados
+  const handleTranslate = (lang: string) => {
+    if (typeof window !== 'undefined' && (window as any).changeLanguage) {
+      (window as any).changeLanguage(lang);
+    }
+    if (isOpen) setIsOpen(false); // Fecha o menu mobile ao trocar idioma
+  };
 
   return (
     <header
@@ -50,24 +54,32 @@ export function Navigation() {
               </Link>
             ))}
             
-            <button 
-              onClick={toggleLang}
-              className="flex items-center gap-1 text-[10px] font-bold text-white border border-white/20 px-2 py-1 rounded hover:bg-white hover:text-black transition-all"
-            >
-              <Globe className="w-3 h-3" />
-              {lang.toUpperCase()}
-            </button>
+            {/* SELETOR DE IDIOMA EN | PT (Desktop) */}
+            <div className="flex items-center gap-2 ml-4 border-l border-white/20 pl-4 font-sans">
+              <button 
+                onClick={() => handleTranslate('en')}
+                className="text-[10px] tracking-widest font-bold opacity-60 hover:opacity-100 transition-opacity uppercase text-white"
+              >
+                EN
+              </button>
+              <span className="opacity-20 text-[10px] text-white">|</span>
+              <button 
+                onClick={() => handleTranslate('pt')}
+                className="text-[10px] tracking-widest font-bold opacity-60 hover:opacity-100 transition-opacity uppercase text-white"
+              >
+                PT
+              </button>
+            </div>
           </div>
 
-          {/* Mobile Controls: Botão de Idioma Visível + Hambúrguer */}
-          <div className="flex items-center gap-2 md:hidden">
-            <button 
-              onClick={toggleLang}
-              className="flex items-center gap-1 text-[10px] font-bold text-white border border-white/20 px-2 py-1 rounded"
-            >
-              <Globe className="w-3 h-3" />
-              {lang.toUpperCase()}
-            </button>
+          {/* Mobile Controls */}
+          <div className="flex items-center gap-4 md:hidden">
+            {/* SELETOR DE IDIOMA EN | PT (Mobile) */}
+            <div className="flex items-center gap-2 border border-white/20 px-2 py-1 rounded">
+              <button onClick={() => handleTranslate('en')} className="text-[10px] font-bold text-white uppercase">EN</button>
+              <span className="opacity-20 text-[10px] text-white">|</span>
+              <button onClick={() => handleTranslate('pt')} className="text-[10px] font-bold text-white uppercase">PT</button>
+            </div>
             
             <button type="button" className="p-2 text-white" onClick={() => setIsOpen(!isOpen)}>
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -78,7 +90,7 @@ export function Navigation() {
         {/* Menu Mobile Dropdown */}
         <div className={cn(
           "md:hidden absolute left-0 right-0 top-full overflow-hidden transition-all duration-300 bg-black shadow-2xl", 
-          isOpen ? "max-h-96 pb-6 px-6" : "max-h-0"
+          isOpen ? "max-h-[500px] pb-6 px-6" : "max-h-0"
         )}>
           <div className="flex flex-col gap-4 pt-4">
             {navLinks.map((link) => (

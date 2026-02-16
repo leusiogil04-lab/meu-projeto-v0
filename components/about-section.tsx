@@ -3,15 +3,10 @@
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
-// Importamos o hook de idioma
-import { useLanguage } from "../app/LanguageContext"
 
 export function AboutSection() {
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
-  
-  // Ativamos as traduções
-  const { t } = useLanguage()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -62,27 +57,24 @@ export function AboutSection() {
           <div
             className={cn(
               "transition-all duration-1000 ease-out delay-200",
-              isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"
+              isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-y-12"
             )}
           >
-            {/* Tradução: About */}
             <span className="text-primary text-sm font-medium tracking-widest uppercase">
-              {t.about.badge}
+              About
             </span>
-            {/* Tradução: Biography */}
             <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-foreground leading-tight">
-              {t.about.title}
+              Biography
             </h2>
             <div className="mt-8 space-y-6 text-muted-foreground leading-relaxed">
-              {/* Tradução: Parágrafos da Bio */}
               <p>
-                {t.about.p1}
+                Mozambican artist, pianist and composer born in Maputo, Mozambique. Leusio Gil's artistic work is rooted in African musical traditions and shaped by contemporary influences such as Jazz.
               </p>
               <p>
-                {t.about.p2}
+                Through live performances and collaborative projects, Leusio explores music as a shared human experience. He is also involved in educational and cultural initiatives, using music as a tool for intercultural exchange.
               </p>
               <p>
-                {t.about.p3}
+                Exposed to and inspired by artists such as Moreira Chonguiça, Richard Bona, Assa Matusse and Albino Mbie, Leusio develops contemporary compositions that bridge tradition and modernity. As an independent artist, Leusio is also an educator and cultural facilitator.
               </p>
             </div>
           </div>

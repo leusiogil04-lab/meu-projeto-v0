@@ -5,13 +5,9 @@ import Link from "next/link"
 import Image from "next/image"
 import { ArrowDown } from "lucide-react"
 import { cn } from "@/lib/utils"
-// Importamos o tradutor global
-import { useLanguage } from "../app/LanguageContext"
 
 export function HeroSection() {
   const [isVisible, setIsVisible] = useState(false)
-  // Puxamos as traduções (t) do contexto
-  const { t } = useLanguage();
 
   useEffect(() => {
     setIsVisible(true)
@@ -24,7 +20,7 @@ export function HeroSection() {
     >
       <Image
         src="/imagens/horizontal02leusiogil.jpg"
-        alt=""
+        alt="Leusio Gil"
         fill
         className="object-cover"
         priority
@@ -50,9 +46,8 @@ export function HeroSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}
         >
-          {/* Usamos a tradução do subtitle definida no contexto */}
           <p className="mt-6 text-lg sm:text-xl md:text-2xl text-white/90 font-light tracking-wide">
-            {t.hero.subtitle}
+            Mozambican Artist | Pianist | Composer
           </p>
         </div>
 
@@ -62,9 +57,8 @@ export function HeroSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}
         >
-          {/* Criaremos esta chave 'description' no LanguageContext em seguida */}
           <p className="mt-4 text-base sm:text-lg text-white/70 max-w-xl mx-auto leading-relaxed">
-            {t.hero.description}
+            Fusion of traditional African songs with Jazz musical styles.
           </p>
         </div>
 
@@ -78,7 +72,7 @@ export function HeroSection() {
             href="#portfolio"
             className="inline-flex items-center gap-2 mt-10 px-8 py-4 bg-primary text-primary-foreground text-sm font-medium tracking-widest uppercase rounded-sm hover:bg-primary/90 transition-colors duration-200"
           >
-            {t.hero.cta}
+            Explore Portfolio
           </Link>
         </div>
       </div>

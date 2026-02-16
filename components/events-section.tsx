@@ -4,8 +4,6 @@ import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { MapPin, Calendar } from "lucide-react"
 import { cn } from "@/lib/utils"
-// Importamos o hook de idioma
-import { useLanguage } from "../app/LanguageContext"
 
 const events = [
   {
@@ -13,16 +11,13 @@ const events = [
     title: "EP Clamor",
     date: "April 11, 2026",
     location: "Tatuí, São Paulo",
-    type: "Show",
+    type: "Live Show",
   },
 ]
 
 export function EventsSection() {
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
-  
-  // Ativamos as traduções
-  const { t } = useLanguage()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -60,17 +55,14 @@ export function EventsSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}
         >
-          {/* Tradução: Badge "Events" */}
           <span className="text-primary text-sm font-medium tracking-widest uppercase">
-            {t.events.badge}
+            Agenda
           </span>
-          {/* Tradução: Título principal */}
           <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-foreground leading-tight">
-            {t.events.title}
+            Upcoming Events
           </h2>
-          {/* Tradução: Descrição */}
           <p className="mt-6 text-muted-foreground leading-relaxed">
-            {t.events.desc}
+            Join me in these upcoming performances and cultural encounters.
           </p>
         </div>
 
@@ -114,12 +106,11 @@ export function EventsSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}
         >
-          {/* Tradução: Botão CTA "Book a Show" */}
           <Link
             href="#contact"
             className="inline-flex items-center gap-2 px-8 py-4 border border-primary text-primary text-sm font-medium tracking-widest uppercase rounded-sm hover:bg-primary hover:text-primary-foreground transition-colors duration-200 bg-transparent"
           >
-            {t.events.cta}
+            Book a Performance
           </Link>
         </div>
       </div>

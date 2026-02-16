@@ -48,7 +48,7 @@
 
 :root {
   --radius: 0.625rem;
-  /* MUDANÇA AQUI: Cor verde escuro #043E43 em formato OKLCH */
+  /* Cor verde escuro #043E43 em formato OKLCH */
   --background: oklch(0.32 0.06 195); 
   --foreground: oklch(0.98 0.01 247);
   
@@ -91,7 +91,6 @@
   --sidebar-ring: oklch(0.98 0.01 247);
 }
 
-/* Mantendo o Dark Mode similar para consistência */
 .dark {
   --background: oklch(0.25 0.05 195);
   --foreground: oklch(0.98 0.01 247);
@@ -128,4 +127,42 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* --- CONFIGURAÇÕES DO GOOGLE TRADUTOR --- */
+
+/* 1. Remove barras, banners e frames do topo */
+.goog-te-banner-frame.skiptranslate,
+.goog-te-banner-frame,
+#goog-gt-tt,
+.goog-te-balloon-frame,
+#goog-gt-count {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* 2. Reseta o posicionamento do corpo da página */
+body {
+    top: 0 !important;
+    position: static !important;
+}
+
+/* 3. Esconde o widget original (os botões personalizados no Navigation controlam a lógica) */
+#google_translate_element {
+    display: none !important;
+}
+
+/* 4. REMOVE A FAIXA/CAMADA ATRÁS DAS LETRAS (Highlights) */
+.goog-text-highlight {
+    background: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    box-sizing: border-box !important;
+}
+
+/* Garante que o Google não altere o fundo do texto em elementos <font> */
+font {
+    background-color: transparent !important;
+    background: none !important;
+    box-shadow: none !important;
 }

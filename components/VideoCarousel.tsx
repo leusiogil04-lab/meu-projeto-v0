@@ -26,7 +26,7 @@ export const VideoCarousel: React.FC = () => {
     <section className="bg-[#003d33] py-20 px-6">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-white text-center mb-12 font-serif text-4xl md:text-5xl font-medium">
-          Media & Performances
+         Videos
         </h2>
 
         <Swiper

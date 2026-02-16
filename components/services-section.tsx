@@ -3,27 +3,22 @@
 import { useEffect, useRef, useState } from "react"
 import { Mic2, GraduationCap } from "lucide-react"
 import { cn } from "@/lib/utils"
-// Importamos o hook de idioma
-import { useLanguage } from "../app/LanguageContext"
 
 export function ServicesSection() {
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
-  
-  // Ativamos as traduções
-  const { t } = useLanguage()
 
-  // Mapeamos os serviços usando as traduções do contexto
+  
   const services = [
     {
       icon: Mic2,
-      title: t.services.s1_title,
-      description: t.services.s1_desc,
+      title: "Live Music & Performance",
+      description: "Professional live performances.",
     },
     {
       icon: GraduationCap,
-      title: t.services.s2_title,
-      description: t.services.s2_desc,
+      title: "Cultural Workshops",
+      description: "Intercultural learning through music, dance, and storytelling.",
     },
   ]
 
@@ -62,17 +57,14 @@ export function ServicesSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}
         >
-          {/* Tradução: Badge "What I Do" */}
           <span className="text-primary text-sm font-medium tracking-widest uppercase">
-            {t.services.badge}
+            What I Do
           </span>
-          {/* Tradução: Título "Creative Services" */}
           <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-foreground leading-tight">
-            {t.services.title}
+            Services
           </h2>
-          {/* Tradução: Descrição geral */}
           <p className="mt-6 text-muted-foreground leading-relaxed">
-            {t.services.desc}
+           I bring the essence of African culture to global audiences through art.
           </p>
         </div>
 

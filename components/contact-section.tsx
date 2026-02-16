@@ -1,21 +1,16 @@
 "use client"
 
 import React, { useEffect, useRef, useState } from "react"
-import { Instagram, Youtube, Mail, Linkedin, Loader2 } from "lucide-react"
+import { Instagram, Youtube, Linkedin, Loader2 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-// Importamos o hook de idioma
-import { useLanguage } from "../app/LanguageContext"
 
 export function ContactSection() {
   const [isVisible, setIsVisible] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
-  
-  // Ativamos as traduções
-  const { t } = useLanguage()
 
   const [formData, setFormData] = useState({
     name: "",
@@ -52,13 +47,15 @@ export function ContactSection() {
       })
 
       if (response.ok) {
-        alert(t.lang === 'pt' ? "Mensagem enviada!" : "Message sent!")
+        // Texto direto em inglês para tradução automática
+        alert("Message sent successfully!")
         setFormData({ name: "", email: "", message: "" })
       } else {
-        alert(t.lang === 'pt' ? "Erro ao enviar." : "Error sending.")
+        alert("Error sending message. Please try again.")
       }
     } catch (error) {
       console.error(error)
+      alert("Something went wrong.")
     } finally {
       setIsSubmitting(false)
     }
@@ -78,13 +75,13 @@ export function ContactSection() {
           )}
         >
           <span className="text-primary text-sm font-medium tracking-widest uppercase">
-            {t.contact.badge}
+            Get in touch
           </span>
           <h2 className="mt-4 font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-foreground leading-tight">
-            {t.contact.title}
+            Contact
           </h2>
           <p className="mt-6 text-muted-foreground leading-relaxed">
-            {t.contact.desc}
+            Have a project in mind or want to book a workshop? Feel free to reach out.
           </p>
         </div>
 
@@ -98,12 +95,12 @@ export function ContactSection() {
           <div className="grid sm:grid-cols-2 gap-6">
             <div>
               <label htmlFor="name" className="sr-only">
-                {t.contact.placeholderName}
+                Full Name
               </label>
               <Input
                 id="name"
                 type="text"
-                placeholder={t.contact.placeholderName}
+                placeholder="Full Name"
                 value={formData.name}
                 onChange={(e) =>
                   setFormData({ ...formData, name: e.target.value })
@@ -114,12 +111,12 @@ export function ContactSection() {
             </div>
             <div>
               <label htmlFor="email" className="sr-only">
-                {t.contact.placeholderEmail}
+                Email Address
               </label>
               <Input
                 id="email"
                 type="email"
-                placeholder={t.contact.placeholderEmail}
+                placeholder="Email Address"
                 value={formData.email}
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
@@ -131,11 +128,11 @@ export function ContactSection() {
           </div>
           <div>
             <label htmlFor="message" className="sr-only">
-              {t.contact.placeholderMessage}
+              Your Message
             </label>
             <Textarea
               id="message"
-              placeholder={t.contact.placeholderMessage}
+              placeholder="Your Message"
               value={formData.message}
               onChange={(e) =>
                 setFormData({ ...formData, message: e.target.value })
@@ -154,7 +151,7 @@ export function ContactSection() {
               {isSubmitting ? (
                 <Loader2 className="animate-spin h-4 w-4" />
               ) : (
-                t.contact.send
+                "Send Message"
               )}
             </Button>
           </div>
@@ -187,6 +184,8 @@ export function ContactSection() {
           </a>
           <a
             href="https://www.linkedin.com/in/leusio-gil-b9a111253/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="w-12 h-12 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors duration-200"
             aria-label="LinkedIn"
           >
