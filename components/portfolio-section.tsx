@@ -22,7 +22,7 @@ const portfolioItems = [
   },
   {
     id: 3,
-    title: "Cultural Bridge Workshop",
+    title: "Cultural Workshop",
     category: "Education",
     image: "/imagens/worshopsantos.jpg",
   },
@@ -40,7 +40,7 @@ const portfolioItems = [
   },
   {
     id: 6,
-    title: "Rhythm & Roots Workshop",
+    title: "Rhythm & Roots",
     category: "Education",
     image: "/imagens/workshopraizes.jpg",
   },

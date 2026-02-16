@@ -8,20 +8,20 @@ export const translations = {
     about: {
       badge: "About",
       title: "Biography",
-      p1: "Mozambican artist, pianist, vocalist, composer and cultural educator, Leusio Gil is emerging as a distinctive voice connecting African roots, contemporary sounds and intercultural dialogue.",
-      p2: "Born in Maputo, Mozambique, Leusio builds bridges between music, education and identity.",
-      p3: "As an independent artist, Leusio is also an educator and cultural facilitator."
+      p1: "Mozambican artist, pianist and composer born in Maputo, Mozambique. Leusio Gil's artistic work is rooted in African musical traditions and shaped by contemporary influences such as Jazz.",
+      p2: "Through live performances, original compositions, and collaborative projects, Leusio explores music as a shared human experience. He is also involved in educational and cultural initiatives, using music as a tool for intercultural exchange.",
+      p3: "Exposed to and inspired by artists such as Moreira Chonguiça, Richard Bona, Assa Matusse and Albino Mbie, Leusio develops contemporary rhythmic compositions and interpretations that bridge tradition and modernity. These influences shape an energetic musical language marked by cultural identity and openness to the world. As an independent artist, Leusio is also an educator and cultural facilitator."
     },
     services: {
       badge: "What I Do",
-      title: "Creative Services",
-      desc: "Bringing passion and expertise to every project, from live performances to educational workshops.",
+      title: "Services",
+      desc: "Sharing music and learning with dedication, making each project a meaningful experience.",
       s1_title: "Performer",
-      s1_desc: "Live performances that captivate and inspire.",
+      s1_desc: "Live performances.",
       s2_title: "Educator",
-      s2_desc: "Workshops and masterclasses that explore the intersection of culture and music."
+      s2_desc: "Workshops and masterclasses."
     },
-    portfolio: { badge: "Portfolio", title: "Selected Works", desc: "A curated collection of performances, compositions, and educational projects.", view: "View Project" },
+    portfolio: { badge: "Portfolio", title: "Selected Works", desc: "A curated collection of performances and educational projects.", view: "View Project" },
     press: {
       badge: "For Professionals",
       title: "Press",
@@ -35,10 +35,10 @@ export const translations = {
       releasesTitle: "Press Releases",
       releasesDesc: "Official press releases about releases, tours, and special projects.",
       releasesCTA: "View All",
-      mediaTitle: "Published Media", // CHAVE QUE FALTAVA
+      mediaTitle: "Published Media", 
       mediaDesc: "Interviews, articles, and reports published in media outlets.",
       mediaCTA: "Explore",
-      newsTitle: "Recent News", // CHAVE QUE FALTAVA
+      newsTitle: "Recent News", 
       newsDesc: "Latest updates on activities, achievements, and new projects.",
       newsCTA: "Read More"
     },
@@ -51,20 +51,20 @@ export const translations = {
     about: {
       badge: "Sobre",
       title: "Biografia",
-      p1: "Artista moçambicano, pianista, vocalista, compositor e educador cultural, Leusio Gil emerge como uma voz distinta.",
-      p2: "Nascido em Maputo, Moçambique, Leusio constrói pontes entre música, educação e identidade.",
-      p3: "Como artista independente, Leusio é também educador e facilitador cultural."
+      p1: "Artista moçambicano, pianista e compositor nascido em Maputo, Moçambique. O trabalho artístico de Leusio Gil tem raízes nas tradições musicais africanas e é moldado por influências contemporâneas, como o jazz.",
+      p2: "Por meio de apresentações ao vivo, composições originais e projetos colaborativos, Leusio explora a música como uma experiência humana compartilhada. Ele também atua em iniciativas educacionais e culturais, utilizando a música como ferramenta de intercâmbio intercultural.",
+      p3: "Exposto e inspirado por artistas como Moreira Chonguiça, Richard Bona, Assa Matusse e Albino Mbie, Leusio desenvolve composições e interpretações rítmicas contemporâneas que conectam tradição e modernidade. Essas influências moldam uma linguagem musical enérgica, marcada por identidade cultural e abertura ao mundo. Como artista independente, Leusio também é educador e facilitador cultural."
     },
     services: {
       badge: "O Que Faço",
-      title: "Serviços Criativos",
-      desc: "Trazendo paixão e experiência para cada projeto, desde apresentações ao vivo a workshops educativos.",
+      title: "Serviços",
+      desc: "Compartilhando música e aprendizado com dedicação, tornando cada projeto uma experiência significativa.",
       s1_title: "Performer",
-      s1_desc: "Performances ao vivo que cativam e inspiram.",
+      s1_desc: "Performances ao vivo.",
       s2_title: "Educador",
-      s2_desc: "Workshops e masterclasses que exploram a interseção entre cultura e música."
+      s2_desc: "Workshops e masterclasses."
     },
-    portfolio: { badge: "Portfólio", title: "Trabalhos Selecionados", desc: "Uma coleção curada de performances, composições e projetos educativos.", view: "Ver Projeto" },
+    portfolio: { badge: "Portfólio", title: "Trabalhos Selecionados", desc: "Uma coleção curada de performances e projetos educativos.", view: "Ver Projeto" },
     press: {
       badge: "Para Profissionais",
       title: "Imprensa",
