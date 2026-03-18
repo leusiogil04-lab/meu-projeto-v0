@@ -14,7 +14,6 @@ interface VideoItem {
   title: string;
 }
 
-// Usando 'export const' para resolver o erro do Target Module
 export const VideoCarousel: React.FC = () => {
   const videos: VideoItem[] = [
     { id: 'sF4NcnIn9LM', title: 'Kaluma Nkhantondoli' },
@@ -23,10 +22,22 @@ export const VideoCarousel: React.FC = () => {
   ];
 
   return (
-    <section className="bg-[#003d33] py-20 px-6">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative py-20 px-6 bg-[#4c1316] overflow-hidden">
+      {/* IMAGEM DE FUNDO - MESMO PADRÃO DAS OUTRAS SEÇÕES */}
+      <div 
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          backgroundImage: "url('/imagens/fundo.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed',
+          opacity: 0.1
+        }}
+      />
+
+      <div className="relative z-10 max-w-7xl mx-auto">
         <h2 className="text-white text-center mb-12 font-serif text-4xl md:text-5xl font-medium">
-         Videos
+          Videos
         </h2>
 
         <Swiper
@@ -47,7 +58,7 @@ export const VideoCarousel: React.FC = () => {
         >
           {videos.map((video) => (
             <SwiperSlide key={video.id}>
-              <div className="rounded-2xl overflow-hidden shadow-2xl aspect-video bg-black">
+              <div className="rounded-2xl overflow-hidden shadow-2xl aspect-video bg-black transition-transform duration-300 hover:scale-[1.01]">
                 <iframe
                   width="100%"
                   height="100%"

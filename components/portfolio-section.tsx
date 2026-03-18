@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils"
 const portfolioItems = [
   {
     id: 1,
-    title: "EP Clamor",
+    title: "Show Clamor",
     category: "Performance",
     image: "/imagens/performance.jpg",
   },
@@ -69,9 +69,21 @@ export function PortfolioSection() {
     <section
       id="portfolio"
       ref={sectionRef}
-      className="py-24 md:py-32 bg-card"
+      className="relative py-24 md:py-32 bg-card overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      {/* IMAGEM DE FUNDO COM 30% DE OPACIDADE */}
+      <div 
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          backgroundImage: "url('imagens/fundo.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed',
+          opacity: 0.1
+        }}
+      />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
         <div
           className={cn(
             "text-center max-w-2xl mx-auto transition-all duration-1000 ease-out",
@@ -85,7 +97,7 @@ export function PortfolioSection() {
            Portfolio
           </h2>
           <p className="mt-6 text-white/70 leading-relaxed">
-           Explore the projects that showcase my work.
+            Explore the projects that showcase my work.
           </p>
         </div>
 
@@ -102,7 +114,7 @@ export function PortfolioSection() {
                 key={item.id} 
                 href={`/projetos/${projectSlug}`}
                 className={cn(
-                  "group relative aspect-[4/3] overflow-hidden cursor-pointer transition-all duration-1000 ease-out",
+                  "group relative aspect-[4/3] overflow-hidden cursor-pointer transition-all duration-1000 ease-out shadow-2xl",
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12",
                 )}
                 style={{ transitionDelay: `${(index + 1) * 100}ms` }}
@@ -115,7 +127,7 @@ export function PortfolioSection() {
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 
-                <div className="absolute inset-0 bg-black/50 md:bg-black/0 md:group-hover:bg-black/70 transition-colors duration-300 flex items-center justify-center">
+                <div className="absolute inset-0 bg-black/50 md:bg-black/20 md:group-hover:bg-black/70 transition-colors duration-300 flex items-center justify-center">
                   <div className="text-center px-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
                     <span className="text-white text-xs font-medium tracking-widest uppercase opacity-80">
                       {item.category}

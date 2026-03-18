@@ -4,134 +4,96 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* Mapeamento de Cores para o Tailwind */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+
+  /* Fontes e Raio */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
 }
 
 :root {
   --radius: 0.625rem;
-  /* Cor verde escuro #043E43 em formato OKLCH */
-  --background: oklch(0.32 0.06 195); 
-  --foreground: oklch(0.98 0.01 247);
+
+  /* --- NOVA PALETA DE CORES (OKLCH) --- */
   
-  --card: oklch(0.35 0.06 195);
-  --card-foreground: oklch(0.98 0.01 247);
-  
-  --popover: oklch(0.32 0.06 195);
-  --popover-foreground: oklch(0.98 0.01 247);
-  
-  --primary: oklch(0.98 0.01 247);
-  --primary-foreground: oklch(0.32 0.06 195);
-  
-  --secondary: oklch(0.45 0.05 195);
-  --secondary-foreground: oklch(0.98 0.01 247);
-  
-  --muted: oklch(0.4 0.04 195);
-  --muted-foreground: oklch(0.85 0.02 195);
-  
-  --accent: oklch(0.45 0.05 195);
-  --accent-foreground: oklch(0.98 0.01 247);
-  
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(1 0 0 / 15%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.98 0.01 247);
-  
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  
-  --sidebar: oklch(0.25 0.05 195);
-  --sidebar-foreground: oklch(0.98 0.01 247);
-  --sidebar-primary: oklch(0.98 0.01 247);
-  --sidebar-primary-foreground: oklch(0.32 0.06 195);
-  --sidebar-accent: oklch(1 0 0 / 10%);
-  --sidebar-accent-foreground: oklch(0.98 0.01 247);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.98 0.01 247);
+  /* #4c1316 - Fundo Vinho Terra */
+  --background: oklch(26.68% 0.082 20.37); 
+  --foreground: oklch(98% 0.01 247);
+
+  /* #f48e19 - Laranja Vibrante (Principal) */
+  --primary: oklch(72.5% 0.203 55.3);
+  --primary-foreground: oklch(26.68% 0.082 20.37);
+
+  /* #d6551c - Terracota (Secundária) */
+  --secondary: oklch(56.78% 0.211 42.48);
+  --secondary-foreground: oklch(98% 0.01 247);
+
+  /* #e0a713 - Ouro/Mostarda (Destaque) */
+  --accent: oklch(75.8% 0.17 80.5);
+  --accent-foreground: oklch(20% 0.05 20);
+
+  /* #863a0e - Marrom (Cards) */
+  --card: oklch(39.5% 0.12 45.2);
+  --card-foreground: oklch(98% 0.01 247);
+
+  --muted: oklch(45% 0.05 30);
+  --muted-foreground: oklch(85% 0.02 40);
+
+  --border: oklch(100% 0 0 / 15%);
+  --input: oklch(100% 0 0 / 15%);
+  --ring: oklch(72.5% 0.203 55.3);
 }
 
 .dark {
-  --background: oklch(0.25 0.05 195);
-  --foreground: oklch(0.98 0.01 247);
-  --card: oklch(0.3 0.05 195);
-  --card-foreground: oklch(0.98 0.01 247);
-  --popover: oklch(0.25 0.05 195);
-  --popover-foreground: oklch(0.98 0.01 247);
-  --primary: oklch(0.98 0.01 247);
-  --primary-foreground: oklch(0.25 0.05 195);
-  --secondary: oklch(0.35 0.05 195);
-  --secondary-foreground: oklch(0.98 0.01 247);
-  --muted: oklch(0.35 0.05 195);
-  --muted-foreground: oklch(0.8 0.02 195);
-  --accent: oklch(0.35 0.05 195);
-  --accent-foreground: oklch(0.98 0.01 247);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.98 0.01 247);
-  --sidebar: oklch(0.2 0.04 195);
-  --sidebar-foreground: oklch(0.98 0.01 247);
-  --sidebar-primary: oklch(0.98 0.01 247);
-  --sidebar-primary-foreground: oklch(0.2 0.04 195);
-  --sidebar-accent: oklch(1 0 0 / 10%);
-  --sidebar-accent-foreground: oklch(0.98 0.01 247);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.98 0.01 247);
+  --background: oklch(20% 0.07 20);
+  --card: oklch(25% 0.08 25);
+  --primary: oklch(75.8% 0.17 80.5);
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    /* Removido o 'outline-ring/50' que causava o erro de compilação */
+    @apply border-border;
   }
+  
   body {
     @apply bg-background text-foreground;
+    
+    /* Configuração da Imagem de Fundo com Overlay Vinho (#4c1316) */
+    background-image: 
+      linear-gradient(to bottom, rgba(76, 19, 22, 0.85), rgba(76, 19, 22, 0.95)), 
+      url('/background-paint-still-life.jpg');
+    
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    
+    /* Resete para o Google Tradutor */
+    top: 0 !important;
+    position: static !important;
   }
 }
 
-/* --- CONFIGURAÇÕES DO GOOGLE TRADUTOR --- */
-
-/* 1. Remove barras, banners e frames do topo */
+/* --- AJUSTES GOOGLE TRADUTOR --- */
 .goog-te-banner-frame.skiptranslate,
 .goog-te-banner-frame,
 #goog-gt-tt,
@@ -141,28 +103,16 @@
     visibility: hidden !important;
 }
 
-/* 2. Reseta o posicionamento do corpo da página */
-body {
-    top: 0 !important;
-    position: static !important;
-}
-
-/* 3. Esconde o widget original (os botões personalizados no Navigation controlam a lógica) */
 #google_translate_element {
     display: none !important;
 }
 
-/* 4. REMOVE A FAIXA/CAMADA ATRÁS DAS LETRAS (Highlights) */
 .goog-text-highlight {
     background: none !important;
     background-color: transparent !important;
     box-shadow: none !important;
-    box-sizing: border-box !important;
 }
 
-/* Garante que o Google não altere o fundo do texto em elementos <font> */
 font {
     background-color: transparent !important;
-    background: none !important;
-    box-shadow: none !important;
 }
