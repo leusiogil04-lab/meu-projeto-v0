@@ -14,33 +14,30 @@ interface Video {
 const videos: Video[] = [
   {
     id: "1",
-    title: "ROSA ao vivo",
-    thumbnail: "/placeholder.svg?height=720&width=1280",
+    title: "ROSA - Live Session",
+    thumbnail: "https://img.youtube.com/vi/Qscqy-i9YOM/maxresdefault.jpg",
     youtubeId: "Qscqy-i9YOM",
   },
+
   {
     id: "2",
     title: "Natalia - Live Session",
-    thumbnail: "/placeholder.svg?height=720&width=1280",
-    youtubeId: "LtMZczgsqjU&list",
+    thumbnail: "https://img.youtube.com/vi/LtMZczgsqjU/maxresdefault.jpg",
+    youtubeId: "LtMZczgsqjU",
   },
+
   {
     id: "3",
-    title: "Ama twe twe",
-    thumbnail: "/placeholder.svg?height=720&width=1280",
-    youtubeId: "nZ6bS9zD_UY",
-  },
-  {
-    id: "4",
-    title: "Kaluma - Live Session",
-    thumbnail: "/placeholder.svg?height=720&width=1280",
+    title: "Ama Twe Twe - Live Session",
+    thumbnail: "https://img.youtube.com/vi/sF4NcnIn9LM/maxresdefault.jpg",
     youtubeId: "sF4NcnIn9LM",
   },
+
   {
-    id: "5",
+    id: "4",
     title: "Xi n'wanana - Live Session",
-    thumbnail: "/placeholder.svg?height=720&width=1280",
-    youtubeId: "UjkX8AQl-8M&list=",
+    thumbnail: "https://img.youtube.com/vi/UjkX8AQl-8M/maxresdefault.jpg",
+    youtubeId: "UjkX8AQl-8M",
   },
 ]
 
