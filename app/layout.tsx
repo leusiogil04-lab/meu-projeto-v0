@@ -16,12 +16,12 @@ const openSans = Open_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'NOVA SILVA | Artista Musical',
-  description: 'Descubra o universo musical de Nova Silva. Ouça os últimos lançamentos, confira a agenda de shows e conecte-se com a música.',
-  keywords: ['música', 'artista', 'shows', 'álbum', 'tour', 'Nova Silva'],
+  title: 'LEUSIO GIL | Artista Moçambicano',
+  description: 'Descubra o universo musical de Leusio Gil. Ouça os últimos lançamentos, confira a agenda de shows e conecte-se com a música.',
+  keywords: ['música', 'artista', 'shows', 'álbum', 'tour', 'Leusio Gil'],
   openGraph: {
-    title: 'NOVA SILVA | Artista Musical',
-    description: 'Descubra o universo musical de Nova Silva',
+    title: 'LEUSIO GIL | Artista Moçambicano',
+    description: 'Descubra o universo musical de Leusio Gil',
     type: 'website',
   },
 }
@@ -40,14 +40,14 @@ export default function RootLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'MusicGroup',
-              name: 'Nova Silva',
-              url: 'https://novasilva.com',
+              name: 'Leusio Gil',
+              url: 'https://leusiogil.com',
               genre: ['Electronic', 'Alternative', 'Indie'],
               description: 'Artista musical contemporâneo explorando sons eletrônicos e alternativos.',
               sameAs: [
-                'https://instagram.com/novasilva',
-                'https://twitter.com/novasilva',
-                'https://open.spotify.com/artist/novasilva',
+                'https://instagram.com/leusiogil',
+                'https://twitter.com/leusiogil',
+                'https://open.spotify.com/artist/leusiogil',
               ],
             }),
           }}
