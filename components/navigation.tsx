@@ -10,7 +10,7 @@ const navLinks = [
   { href: "#shows", label: "Shows" },
   { href: "#galeria", label: "Galeria" },
   { href: "#sobre", label: "Sobre" },
-  { href: "#loja", label: "Loja" },
+  { href: "#videos", label: "Vídeos" },
   { href: "#contacto", label: "Contacto" },
 ]
 
@@ -34,7 +34,7 @@ export function Navigation() {
     >
       <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
         <a href="#inicio" className="text-2xl font-bold tracking-tighter text-primary">
-          LEUSIO<span className="text-foreground">GIL</span>
+          NOVA<span className="text-foreground">SILVA</span>
         </a>
 
         {/* Desktop Navigation */}

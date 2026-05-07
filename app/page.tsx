@@ -4,7 +4,7 @@ import { AudioPlayer } from "@/components/audio-player"
 import { ShowsSchedule } from "@/components/shows-schedule"
 import { Gallery } from "@/components/gallery"
 import { EPKSection } from "@/components/epk-section"
-import { OnlineStore } from "@/components/online-store"
+import { VideoCarousel } from "@/components/video-carousel"
 import { ContactForm } from "@/components/contact-form"
 import { Footer } from "@/components/footer"
 
@@ -18,7 +18,7 @@ export default function Home() {
         <ShowsSchedule />
         <Gallery />
         <EPKSection />
-        <OnlineStore />
+        <VideoCarousel />
         <ContactForm />
       </main>
       <Footer />
