@@ -1,6 +1,5 @@
 "use client"
 
-// Repare que adicionei o ícone correto aqui na lista
 import { Download, Instagram, Youtube, Facebook, Linkedin } from "lucide-react" 
 import { Button } from "@/components/ui/button"
 
@@ -140,8 +139,8 @@ export function EPKSection() {
                     <span className="text-foreground font-medium">2021</span>
                   </div>
                   <div>
-                    <span className="text-muted-foreground block">Editora</span>
-                    <span className="text-foreground font-medium">Nova Records</span>
+                    <span className="text-muted-foreground block">Ep</span>
+                    <span className="text-foreground font-medium">Clamor (2026)</span>   
                   </div>
                 </div>
               </div>
