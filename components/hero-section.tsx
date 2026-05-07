@@ -1,86 +1,74 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { ArrowDown } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { useEffect, useRef } from "react"
+import { ChevronDown, Play } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 export function HeroSection() {
-  const [isVisible, setIsVisible] = useState(false)
+  const parallaxRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    setIsVisible(true)
+    const handleScroll = () => {
+      if (parallaxRef.current) {
+        const scrolled = window.scrollY
+        parallaxRef.current.style.transform = `translateY(${scrolled * 0.5}px)`
+      }
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   return (
-    <section
-      id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-    >
-      <Image
-        src="/imagens/horizontal02leusiogil.jpg"
-        alt="Leusio Gil"
-        fill
-        className="object-cover"
-        priority
-      />
-      
-      <div className="absolute inset-0 bg-black/60" />
+    <section id="inicio" className="relative h-screen overflow-hidden">
+      {/* Background with Parallax */}
+      <div
+        ref={parallaxRef}
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: `url('/imagens/fotogaleria7.jpg')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background" />
+      </div>
 
-      <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-        <div
-          className={cn(
-            "transition-all duration-1000 ease-out",
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          )}
-        >
-          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium text-white tracking-tight leading-tight">
-            Leusio Gil
-          </h1>
-        </div>
+      {/* Content */}
+      <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
+        <span className="text-primary text-sm md:text-base uppercase tracking-[0.3em] mb-4 animate-fade-in">
+          EP Novo Disponível
+        </span>
+        <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold tracking-tighter mb-6 text-balance">
+          <span className="text-primary">LEUSIO</span>
+          <span className="text-foreground">GIL</span>
+        </h1>
+        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 text-pretty font-serif">
+          Artista e compositor moçambicano que tem conquistado o cenário musical com sua mistura única de ritmos tradicionais e contemporâneos, criando uma sonoridade cativante e autêntica.  
+        </p>
 
-        <div
-          className={cn(
-            "transition-all duration-1000 ease-out delay-300",
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          )}
-        >
-          <p className="mt-6 text-lg sm:text-xl md:text-2xl text-white/90 font-light tracking-wide">
-            Mozambican Artist | Pianist | Composer
-          </p>
-        </div>
-
-        <div
-          className={cn(
-            "transition-all duration-1000 ease-out delay-500",
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          )}
-        >
-          <p className="mt-4 text-base sm:text-lg text-white/70 max-w-xl mx-auto leading-relaxed">
-            Fusion of traditional African songs with Jazz musical styles.
-          </p>
-        </div>
-
-        <div
-          className={cn(
-            "transition-all duration-1000 ease-out delay-700",
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          )}
-        >
-          <Link
-            href="#portfolio"
-            className="inline-flex items-center gap-2 mt-10 px-8 py-4 bg-primary text-primary-foreground text-sm font-medium tracking-widest uppercase rounded-sm hover:bg-primary/90 transition-colors duration-200"
+        <div className="flex flex-col sm:flex-row gap-4">
+          <Button
+            size="lg"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg font-semibold uppercase tracking-wider transition-all duration-300 hover:scale-105"
           >
-            Explore Portfolio
-          </Link>
+            <Play className="mr-2 h-5 w-5" />
+            Ouvir Agora
+          </Button>
+          <Button
+            variant="outline"
+            size="lg"
+            className="border-foreground/30 text-foreground hover:bg-foreground/10 px-8 py-6 text-lg font-semibold uppercase tracking-wider transition-all duration-300"
+          >
+            Ver Agenda
+          </Button>
         </div>
       </div>
 
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-        <Link href="#about" aria-label="Scroll to about section">
-          <ArrowDown className="w-5 h-5 text-white/70" />
-        </Link>
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+        <a href="#musica" aria-label="Rolar para baixo">
+          <ChevronDown className="h-8 w-8 text-primary" />
+        </a>
       </div>
     </section>
   )

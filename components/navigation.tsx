@@ -1,110 +1,85 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import Link from "next/link"
 import { Menu, X } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+
+const navLinks = [
+  { href: "#inicio", label: "Início" },
+  { href: "#musica", label: "Música" },
+  { href: "#shows", label: "Shows" },
+  { href: "#galeria", label: "Galeria" },
+  { href: "#sobre", label: "Sobre" },
+  { href: "#loja", label: "Loja" },
+  { href: "#contacto", label: "Contacto" },
+]
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-  
-  const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/#about", label: "About" },
-    { href: "/#services", label: "Services" },
-    { href: "/press", label: "Press" }, 
-    { href: "/media", label: "Media" }, 
-    { href: "/#events", label: "Events" },
-    { href: "/#contact", label: "Contact" },
-  ]
+  const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 10)
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Função para disparar a tradução através dos botões personalizados
-  const handleTranslate = (lang: string) => {
-    if (typeof window !== 'undefined' && (window as any).changeLanguage) {
-      (window as any).changeLanguage(lang);
-    }
-    if (isOpen) setIsOpen(false); // Fecha o menu mobile ao trocar idioma
-  };
-
   return (
     <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled ? "bg-black shadow-2xl h-16" : "bg-black/90 md:bg-black/40 h-20"
-      )}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-background/95 backdrop-blur-md border-b border-border" : "bg-transparent"
+      }`}
     >
-      <nav className="max-w-7xl mx-auto px-6 lg:px-8 h-full">
-        <div className="flex items-center justify-between h-full">
-          <Link href="/" className="text-xl font-serif font-semibold text-white tracking-wide hover:opacity-80 transition-opacity">
-            Leusio Gil
-          </Link>
+      <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="#inicio" className="text-2xl font-bold tracking-tighter text-primary">
+          LEUSIO<span className="text-foreground">GIL</span>
+        </a>
 
-          {/* Desktop Links */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link key={link.href} href={link.href} className="text-xs font-bold text-white hover:text-white/70 transition-colors duration-200 tracking-widest uppercase">
-                {link.label}
-              </Link>
-            ))}
-            
-            {/* SELETOR DE IDIOMA EN | PT (Desktop) */}
-            <div className="flex items-center gap-2 ml-4 border-l border-white/20 pl-4 font-sans">
-              <button 
-                onClick={() => handleTranslate('en')}
-                className="text-[10px] tracking-widest font-bold opacity-60 hover:opacity-100 transition-opacity uppercase text-white"
-              >
-                EN
-              </button>
-              <span className="opacity-20 text-[10px] text-white">|</span>
-              <button 
-                onClick={() => handleTranslate('pt')}
-                className="text-[10px] tracking-widest font-bold opacity-60 hover:opacity-100 transition-opacity uppercase text-white"
-              >
-                PT
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Controls */}
-          <div className="flex items-center gap-4 md:hidden">
-            {/* SELETOR DE IDIOMA EN | PT (Mobile) */}
-            <div className="flex items-center gap-2 border border-white/20 px-2 py-1 rounded">
-              <button onClick={() => handleTranslate('en')} className="text-[10px] font-bold text-white uppercase">EN</button>
-              <span className="opacity-20 text-[10px] text-white">|</span>
-              <button onClick={() => handleTranslate('pt')} className="text-[10px] font-bold text-white uppercase">PT</button>
-            </div>
-            
-            <button type="button" className="p-2 text-white" onClick={() => setIsOpen(!isOpen)}>
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-        </div>
-
-        {/* Menu Mobile Dropdown */}
-        <div className={cn(
-          "md:hidden absolute left-0 right-0 top-full overflow-hidden transition-all duration-300 bg-black shadow-2xl", 
-          isOpen ? "max-h-[500px] pb-6 px-6" : "max-h-0"
-        )}>
-          <div className="flex flex-col gap-4 pt-4">
-            {navLinks.map((link) => (
-              <Link 
-                key={link.href} 
-                href={link.href} 
-                className="text-sm font-bold text-white py-3 border-b border-white/5 uppercase tracking-widest" 
-                onClick={() => setIsOpen(false)}
+        {/* Desktop Navigation */}
+        <ul className="hidden lg:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <li key={link.href}>
+              <a
+                href={link.href}
+                className="text-sm font-medium uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors duration-300"
               >
                 {link.label}
-              </Link>
-            ))}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        {/* Mobile Menu Button */}
+        <Button
+          variant="ghost"
+          size="icon"
+          className="lg:hidden text-foreground"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
+        >
+          {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </Button>
+
+        {/* Mobile Navigation */}
+        {isOpen && (
+          <div className="absolute top-full left-0 right-0 bg-background/98 backdrop-blur-md border-b border-border lg:hidden">
+            <ul className="flex flex-col items-center py-8 gap-6">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="text-lg font-medium uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors duration-300"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
-        </div>
+        )}
       </nav>
     </header>
   )
