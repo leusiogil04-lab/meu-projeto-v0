@@ -75,16 +75,14 @@ export function EPKSection() {
             <div className="space-y-4 text-muted-foreground font-serif leading-relaxed">
 
               <p>
-                Leusio Gil é um artista e compositor de Moçambique
-                que emergiu da cena tradicional e folclórica
-                moçambicana em 2021.
+                Leusio Gil é um artista, compositor e pianista de Moçambique
+                nascido na cidade de Maputo. Apaixonado pela música tradicional africana,
+                ele combina elementos culturais com influências contemporâneas.
               </p>
 
               <p>
-                Com uma fusão única de sons tradicionais e influências
-                da música contemporânea, Leusio tem se destacado
-                como uma das vozes mais promissoras da nova geração
-                de músicos africanos.
+                Leusio tem se destacado como uma das vozes mais promissoras da nova geração
+                de músicos africanos e pelos arranjos musicais sufisticados do jazz.
               </p>
 
               <p>
@@ -190,7 +188,7 @@ export function EPKSection() {
                     </span>
 
                     <span className="text-foreground font-medium">
-                      Afrojazz / Tribal
+                      Afrojazz 
                     </span>
                   </div>
 

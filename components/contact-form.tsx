@@ -41,7 +41,7 @@ export function ContactForm() {
             Contacto
           </h2>
           <p className="text-muted-foreground mt-4 max-w-xl mx-auto font-serif">
-            Tem uma pergunta, proposta ou apenas quer dizer olá? Estamos aqui para ouvir.
+            Tem uma pergunta ou proposta? Estamos aqui para ouvir.
           </p>
         </div>
 
